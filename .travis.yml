@@ -1,9 +1,8 @@
 language: node_js
 node_js:
-  - "8"
   - "10"
 
-before_script:
+install:
   - npm install -g npm@latest
   - npm ci
 
@@ -14,7 +13,7 @@ before_script:
   - git checkout 0455036d73722e759a8674d3e9037725f867b62f
 
   # move bundle to correct place relative to nodecg
-  - 'move %TRAVIS_BUILD_DIR% bundles\%TRAVIS_REPO_SLUG%'
+  - 'mv %TRAVIS_BUILD_DIR% bundles\%TRAVIS_REPO_SLUG%'
   - cd bundles\%TRAVIS_REPO_SLUG%
 
 script:
