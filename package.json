@@ -1,0 +1,25 @@
+{
+  "name": "charity-overlay-bundle",
+  "version": "0.0.0",
+  "description": "",
+  "homepage": "",
+  "author": {
+    "name": "UoM Esports Society",
+    "email": "tech@uomesports.co.uk",
+    "url": ""
+  },
+  "files": [
+    "dashboard",
+    "graphics",
+    "extension.js",
+    "extension"
+  ],
+  "keywords": [
+    "",
+    "nodecg-bundle"
+  ],
+  "nodecg": {
+    "compatibleRange": "^1.3.1"
+  },
+  "license": "AGPL-3.0"
+}
