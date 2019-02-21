@@ -3,8 +3,16 @@ node_js:
   - "8"
   - "10"
 
-before_script: 
-  - npm install
+before_script:
+  - npm install -g npm@latest
+  - npm install -g bower nodecg-cli
+  - npm ci
+  - cd ..
+  - git clone https://github.com/nodecg/nodecg.git
+  - cd nodecg
+  - git checkout 0455036d73722e759a8674d3e9037725f867b62f
+  - 'move %TRAVIS_BUILD_DIR% bundles\%TRAVIS_REPO_SLUG%'
+  - cd bundles\%TRAVIS_REPO_SLUG%
 
 script:
   - npm run static

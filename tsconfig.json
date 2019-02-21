@@ -32,7 +32,6 @@
 		"noUnusedParameters": true,
 		"strictNullChecks": true,
 		"skipLibCheck": true,
-
 		"declaration": true,
 		"declarationMap": true,
 		"sourceMap": true,
