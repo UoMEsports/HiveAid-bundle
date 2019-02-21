@@ -12,7 +12,7 @@
     "static:extension": "tslint -p tsconfig.json -t stylish",
     "bundle": "trash graphics && trash dashboard && node script/bundle.js",
     "build": "npm run build:extension && npm run build:browser",
-    "build:browser": "cross-env NODE_ENV=production npm run bundle",
+    "build:browser": "trash .cache && cross-env NODE_ENV=production npm run bundle",
     "build:extension": "trash extension && tsc -b tsconfig.json",
     "watch": "npm run bundle",
     "start": "node ../.."
@@ -33,6 +33,7 @@
     "cross-env": "^5.2.0",
     "dart-sass": "^1.17.1",
     "eslint": "^5.14.1",
+    "eslint-plugin-ava": "^5.1.1",
     "eslint-plugin-vue": "^5.2.2",
     "gsap": "^2.1.0",
     "nodecg-vue": "^0.5.2",
