@@ -6,7 +6,9 @@
     "email": "tech@uomesports.co.uk"
   },
   "scripts": {
-    "static": "tslint -p tsconfig.json -t stylish",
+    "static": "npm run static:extension && npm run static:browser",
+    "static:browser": "eslint --ext .js,.vue src/dashboard && eslint --ext .js,.vue src/graphics",
+    "static:extension": "tslint -p tsconfig.json -t stylish",
     "bundle": "node script/bundle.js",
     "build": "npm run build:extension && npm run build:browser",
     "build:browser": "cross-env NODE_ENV=production npm run bundle",
@@ -26,10 +28,10 @@
     "@types/clone": "^0.1.30",
     "@types/luxon": "^1.11.1",
     "@types/node": "^11.9.4",
-    "babel-preset-vue": "^2.0.2",
     "cross-env": "^5.2.0",
     "dart-sass": "^1.17.1",
     "eslint": "^5.14.1",
+    "eslint-plugin-vue": "^5.2.2",
     "gsap": "^2.1.0",
     "nodecg-vue": "^0.5.2",
     "parcel-bundler": "^1.11.0",

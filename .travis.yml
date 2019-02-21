@@ -1,0 +1,11 @@
+language: javascript
+node_js: 
+  - "8"
+  - "10"
+
+before_script: 
+  - npm install
+
+script:
+  - npm run static
+  - npm run build

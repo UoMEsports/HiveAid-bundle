@@ -1,3 +1,7 @@
-node_modules
-coverage
-bower_components
+/node_modules
+/coverage
+
+/.cache
+/dashboard
+/extension
+/graphics
