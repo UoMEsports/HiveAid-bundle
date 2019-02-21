@@ -14,9 +14,9 @@ install:
   - cd nodecg
   - git checkout 0455036d73722e759a8674d3e9037725f867b62f
 
-  # move bundle to correct place relative to nodecg
-  - 'mv $TRAVIS_BUILD_DIR bundles/$TRAVIS_REPO_SLUG'
-  - cd bundles/$TRAVIS_REPO_SLUG
+  # move bundle to correct location relative to nodecg
+  - 'mv $TRAVIS_BUILD_DIR bundles/'
+  - cd bundles/overlay-bundle
 
 script:
   - npm run static
