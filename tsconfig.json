@@ -1,0 +1,46 @@
+{
+	"compilerOptions": {
+		// Output related
+		"target": "es2017",
+		"importHelpers": true,
+
+		// Module resolution
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"baseUrl": "./",
+		"paths": {
+			"*": [
+				"./node_modules/*",
+				"./src/types/*"
+			]
+		},
+		"rootDir": "src/extension",
+		"outDir": "extension",
+		"types": [
+			"node"
+		],
+
+		// Type checking
+		"lib": ["es2017"],
+		"alwaysStrict": true,
+		"forceConsistentCasingInFileNames": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"strictNullChecks": true,
+		"skipLibCheck": true,
+
+		"declaration": true,
+		"declarationMap": true,
+		"sourceMap": true,
+		"inlineSourceMap": true
+	},
+	"compileOnSave": false,
+	"include": [
+		"src/extension/**/*.ts"
+	],
+	"exclude": ["src/extension/**/*spec.ts"]
+}
