@@ -7,6 +7,7 @@
   },
   "scripts": {
     "autofix:browser": "eslint --fix --ext .js,.vue src/dashboard && eslint --fix --ext .js,.vue src/graphics",
+    "autofix:extension": "tslint --fix -p tsconfig.json -t stylish",
     "static": "npm run static:extension && npm run static:browser",
     "static:browser": "eslint --ext .js,.vue src/dashboard && eslint --ext .js,.vue src/graphics",
     "static:extension": "tslint -p tsconfig.json -t stylish",
