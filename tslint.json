@@ -10,6 +10,7 @@
 		"no-require-imports": false,
 		"no-single-line-block-comment": false,
 		"no-unnecessary-type-assertion": false,
+		"no-unsafe-any": false,
 		"restrict-plus-operands": false,
 		"strict-type-predicates": false,
 		"typedef": [true, "call-signature", "parameter", "property-declaration", "member-variable-declaration", "object-destructuring", "array-destructuring"],
