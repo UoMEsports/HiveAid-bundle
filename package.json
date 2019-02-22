@@ -22,7 +22,8 @@
   "private": true,
   "dependencies": {
     "clone": "^2.1.2",
-    "luxon": "^1.11.3"
+    "luxon": "^1.11.3",
+    "nanotimer": "^0.3.15"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
