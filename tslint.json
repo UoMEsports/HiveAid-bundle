@@ -12,7 +12,7 @@
 		"no-unnecessary-type-assertion": false,
 		"restrict-plus-operands": false,
 		"strict-type-predicates": false,
-		"typedef": [true, "call-signature", "parameter", "property-declaration", "variable-declaration", "member-variable-declaration", "object-destructuring", "array-destructuring"],
+		"typedef": [true, "call-signature", "parameter", "property-declaration", "member-variable-declaration", "object-destructuring", "array-destructuring"],
 		"variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"]
 	}
 }
