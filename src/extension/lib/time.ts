@@ -6,7 +6,7 @@ import {EventEmitter} from 'events';
 // Packages
 import parseMsToObj = require('parse-ms');
 import * as convertUnitToMs from 'milliseconds';
-import {MsObj} from '../../types/countdown';
+import {MsObj} from '../../types/time';
 
 /**
  * Constructs a new TimeStruct with the provided number of milliseconds.
