@@ -23,7 +23,9 @@
   "dependencies": {
     "clone": "^2.1.2",
     "luxon": "^1.11.3",
-    "nanotimer": "^0.3.15"
+    "milliseconds": "^1.0.3",
+    "nanotimer": "^0.3.15",
+    "parse-ms": "^2.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
