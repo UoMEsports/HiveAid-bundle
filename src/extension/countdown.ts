@@ -22,14 +22,14 @@ nodecg.listenFor('stopCountdown', stop);
 
 /**
  * Starts the countdown at the specified startTime.
- * @param startTime - A formatted time string, such as 1:00 for one hour.
+ * @param startTimeSeconds - Number of seconds to start the timer on.
  */
-function start(startTime: string): void {
+function start(startTimeSeconds: number): void {
 	if (running.value) {
 		return;
 	}
 
-	const durationMs = TimeUtils.parseTimeString(startTime);
+	const durationMs = startTimeSeconds * 1000;
 	if (durationMs <= 0) {
 		return;
 	}

@@ -15,13 +15,13 @@ import {MsObj} from '../../types/time';
  */
 export function createTimeStruct(milliseconds = 0): any {
 	const parsedTime = parseMilliseconds(milliseconds);
-	// Can't use object spread because of https://github.com/Polymer/polymer-cli/issues/888
-	// tslint:disable-next-line:prefer-object-spread
-	return Object.assign({}, parsedTime, {
+
+	return {
+		...parsedTime,
 		formatted: formatMilliseconds(milliseconds),
 		raw: milliseconds,
 		timestamp: Date.now()
-	});
+	};
 }
 /**
  * Formats a number of milliseconds into a string ([hh:]mm:ss).
