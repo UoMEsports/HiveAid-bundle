@@ -1,5 +1,8 @@
 import {NodeCG} from '../../../../types/server';
+import * as nodecgApiContext from './util/nodecg-api-context';
 
 export = (nodecg: NodeCG) => {
-	nodecg.sendMessage('message');
+	nodecgApiContext.set(nodecg);
+
+	require('./countdown.ts');
 };
