@@ -61,3 +61,6 @@ function stop(): void {
 		countdownTimer.stop();
 	}
 }
+time.on('change', newVal => {
+	if (newVal.raw <= 0) running.value = false;
+})
