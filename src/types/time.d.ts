@@ -4,5 +4,6 @@ export interface MsObj {
 	minutes: number;
 	seconds: number;
 	milliseconds: number;
+	microseconds: number;
 	nanoseconds: number;
 }

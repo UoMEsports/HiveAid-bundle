@@ -11,6 +11,8 @@ export interface Countdown {
 	minutes: number;
 	seconds: number;
 	milliseconds: number;
+	microseconds: number;
+	nanoseconds: number;
 	formatted: string;
 	raw: number;
 	timestamp: number;
