@@ -21,7 +21,15 @@
 		},
 		"milliseconds": {
 			"type": "number",
+			"default": 0	
+		},
+		"microseconds": {
+			"type": "number",
 			"default": 0
+		},
+		"nanoseconds": {
+			"type": "number",
+			"default": 0	
 		},
 		"formatted": {
 			"type": "string",
@@ -42,6 +50,8 @@
 		"minutes",
 		"seconds",
 		"milliseconds",
+		"microseconds",
+		"nanoseconds",
 		"formatted",
 		"raw",
 		"timestamp"
