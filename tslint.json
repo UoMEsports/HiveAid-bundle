@@ -3,6 +3,7 @@
 	"rules": {
 		"await-promise": [true, "RequestPromise"],
 		"comment-format": false,
+		"curly": [true, "ignore-same-line"],
 		"early-exit": false,
 		"no-floating-promises": false,
 		"no-inner-html": false,
