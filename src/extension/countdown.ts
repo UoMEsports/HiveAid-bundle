@@ -45,6 +45,7 @@ function start(startTimeSeconds: number): void {
 	countdownTimer = new TimeUtils.CountdownTimer(Date.now() + durationMs, {tickRate: 10});
 	countdownTimer.on('tick', remainingTimeStruct => {
 		time.value = remainingTimeStruct;
+		if (remainingTimeStruct.raw <= 0) stop();
 	});
 }
 
@@ -61,6 +62,3 @@ function stop(): void {
 		countdownTimer.stop();
 	}
 }
-time.on('change', newVal => {
-	if (newVal.raw <= 0) running.value = false;
-})
