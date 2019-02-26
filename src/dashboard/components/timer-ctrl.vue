@@ -1,13 +1,13 @@
 <template>
   <div>
     <h1 class="time">{{ time }}</h1>
-    <h2 class="nextTime">{{ nextTime }}</h2>
+    <h2>{{ nextTime }}</h2>
     <h1 class="text">{{ text }}</h1>
     <v-btn @click="toggleTimer" :color="startStopColour">{{ startStopContent }}</v-btn>
     <v-btn @click="toggleHidden" :color="showHideColour">{{ showHideContent }}</v-btn>
     <v-btn color="orange" nodecg-dialog="timer-dialog-to">Run to</v-btn>
     <v-btn color="orange" nodecg-dialog="timer-dialog-for">Run for</v-btn>
-    <nodecg-text v-model="newText" dark replicantName="countdownNewText"></nodecg-text>
+    <v-text-field v-model="newText" dark></v-text-field>
     <v-btn @click="setText" color="green">Update Text</v-btn>
   </div>
 </template>
