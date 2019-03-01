@@ -21,7 +21,7 @@
   "license": "AGPL-3.0",
   "private": true,
   "dependencies": {
-    "clone": "^2.1.2",
+    "cloneable-ts": "^1.0.15",
     "luxon": "^1.11.3",
     "milliseconds": "^1.0.3",
     "nanotimer": "^0.3.15",
@@ -76,6 +76,14 @@
         "title": "Omnibar",
         "width": 2,
         "file": "omnibar.html",
+        "headerColor": "#525F78",
+        "workspace": "1: Main"
+      },
+      {
+        "name": "names",
+        "title": "Names",
+        "width": 3,
+        "file": "names.html",
         "headerColor": "#525F78",
         "workspace": "1: Main"
       },
