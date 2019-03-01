@@ -1,6 +1,3 @@
-'use strict';
-
-// Ours
 import * as nodecgApiContext from './util/nodecg-api-context';
 import * as TimeUtils from './lib/time';
 import {Countdown} from '../types/schemas/countdown';
@@ -63,4 +60,4 @@ function stop(): void {
 }
 time.on('change', newVal => {
 	if (newVal.raw <= 0) running.value = false;
-})
+});
