@@ -1,35 +1,48 @@
 import * as nodecgApiContext from './util/nodecg-api-context';
-import {Cloneable} from 'cloneable-ts';
-import {NamesObject} from '../types/namesObject';
-import {Names} from '../types/schemas/names';
+import {Names, NameObject} from '../types/schemas/names';
+import {NameArgs} from '../types/nameArgs';
 
 const nodecg = nodecgApiContext.get();
-const namesNextID = nodecg.Replicant('namesNextID', {defaultValue: 1});
-const names = nodecg.Replicant<Names>('names', {defaultValue: []});
+let clone = require('clone');
 
-nodecg.listenFor('addStaff', addStaff);
-nodecg.listenFor('delStaff', delStaff);
+const names = nodecg.Replicant<Names>('names');
 
-function addStaff(obj: NamesObject): void {
-	obj.id = namesNextID.value;
-	let newList = Cloneable.clone(names.value);
-	if (!newList || newList.length < 1) {
-		newList = [];
-	}
-	nodecg.log.debug('staff to be added: ' + obj);
-	console.log(newList);
-	newList.push(obj);
+nodecg.listenFor('addStaff', add);
+nodecg.listenFor('delStaff', del);
+nodecg.listenFor('editStaff', edit);
+
+// List mutation functions
+/************************/
+
+// Append item to the list
+function add(args: NameArgs) {
+	let newList: Names = clone(names.value);
+	const index = newList.index++;
+
+	newList.items = newList.items || {};
+	
+	newList.items[index] = {id: index, realName: args.realName, fullName: args.fullName, alias: args.alias, social: args.social};
+
 	names.value = newList;
-	nodecg.log.debug('staff after addition: ' + names.value);
-	console.log(names.value);
-	namesNextID.value++;
 }
-function delStaff(id): void {
-	const newList = Cloneable.clone(names.value);
-	const index = newList.findIndex(x => x.id === id);
-	// Check id found
-	if (index > -1) {
-		newList.splice(index, 1);
-		names.value = newList;
+
+// Delete item from list
+// Disallows deletion of currently shown lower third
+function del(id: number) {
+	if (!id) {
+		return;
 	}
+
+	let newList = clone(names.value);
+	delete newList.items[id];
+
+	names.value = newList;
+}
+
+// Modify item in list
+function edit(nameObj: NameObject) {
+	let newList = clone(names.value);
+	newList.items[nameObj.id] = nameObj;
+
+	names.value = newList;
 }

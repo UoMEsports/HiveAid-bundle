@@ -1,8 +1,26 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
-    "type": "array",
-    "items": {
-        "type": "object",
-        "$ref": "types/namesObject.json"
-    }
-}
+    "additionalProperties": false,
+    "definitions": {
+        "nameObject": {
+            "additionalProperties": false,
+            "type": "object",
+            "properties": {
+                "id":       { "type": "number" },
+                "realName": { "type": "string" },
+                "fullName": { "type": "string" },
+                "alias":    { "type": "string" },
+                "social":   { "type": "string" }
+            },
+            "required": ["id", "realName", "fullName", "alias", "social"]
+        }
+    },
+
+    "type": "object",
+
+    "properties": {
+        "index": { "type": "number", "default": 1},
+        "items": { "$ref": "#/definitions/namesObject"}
+    },
+    "required": ["index"]
+  }

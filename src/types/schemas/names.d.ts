@@ -5,10 +5,14 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type Names = {
-	id?: number;
+export interface Names {
+	index: number;
+	items?: NamesObject;
+}
+export interface NameObject {
+	id: number;
 	realName: string;
 	fullName: string;
 	alias: string;
 	social: string;
-}[];
+}

@@ -36,38 +36,42 @@
 				</v-form>
 			</v-flex>
 
-			<template v-for="(item, index) in names">
-				<v-flex xs12 :key="index">
-					<v-card class="current" :color="runningColour" dark>
-						<v-card-title primary-title>
-							<div>
-								<h3 class="headline mb-0">{{item.fullName}}</h3>
-								<h3>{{item.alias}}</h3>
-								<h5 v-if="item.social">@{{item.social}}</h5>
-							</div>
-						</v-card-title>
+			<v-list two-line v-show="Object.keys(this.names).length > 0">
+				<template v-for="(item, index) in names">
+					<v-flex xs12 :key="index">
+						<v-card class="current" :color="runningColour" dark>
+							<v-card-title primary-title>
+								<div>
+									<h3 class="headline mb-0">{{item.fullName}}</h3>
+									<h3>{{item.alias}}</h3>
+									<h5 v-if="item.social">@{{item.social}}</h5>
+								</div>
+							</v-card-title>
 
-						<v-btn fab
-							dark
-							small
-							color="red"
-							@click="del(item.id)"
-						>
-							<v-icon>delete</v-icon>
-						</v-btn>
-					</v-card>
-				</v-flex>
-			</template>
+							<v-btn fab
+								dark
+								small
+								color="red"
+								@click="del(item.id)"
+							>
+								<v-icon>delete</v-icon>
+							</v-btn>
+						</v-card>
+					</v-flex>
+				</template>
+			</v-list>
 		</v-layout>
 	</v-container>
 </template>
 
 <script>
+const clone = require('clone');
+
 const names = nodecg.Replicant('names');
 export default {
 	data() {
 		return {
-			names: [],
+			names: {},
 			firstName: '',
 			lastName: '',
 			alias: '',
@@ -82,7 +86,7 @@ export default {
 	methods: {
 		listen() {
 			names.on('change', newVal => {
-				this.names = newVal;
+				this.names = clone(newVal.items);
 			});
 		},
 		add() {
