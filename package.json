@@ -21,6 +21,7 @@
   "license": "AGPL-3.0",
   "private": true,
   "dependencies": {
+    "clone": "^2.1.2",
     "cloneable-ts": "^1.0.15",
     "luxon": "^1.11.3",
     "milliseconds": "^1.0.3",

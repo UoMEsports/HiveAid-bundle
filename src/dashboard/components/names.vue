@@ -39,7 +39,7 @@
 			<v-list two-line v-show="Object.keys(this.names).length > 0">
 				<template v-for="(item, index) in names">
 					<v-flex xs12 :key="index">
-						<v-card class="current" :color="runningColour" dark>
+						<v-card class="current" dark>
 							<v-card-title primary-title>
 								<div>
 									<h3 class="headline mb-0">{{item.fullName}}</h3>
@@ -103,10 +103,6 @@ export default {
 		},
 		del(id) {
 			nodecg.sendMessage('delStaff', id);
-		}
-	},
-	computed: {
-		runningColour() {
 		}
 	}
 };
