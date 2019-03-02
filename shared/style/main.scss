@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'azonix';
+    src: url('/../../shared/fonts/azonix.woff') format('woff');
+    font-weight: 400;
+}
+
+* {
+    font-family: azonix, sans-serif;
+}
+
+$primary: #FFF100;
+$secondary: #FFD421;
+$background: #3A3A3C;
