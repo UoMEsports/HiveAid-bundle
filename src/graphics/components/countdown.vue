@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="somthingsensible">{{countdown}}</h1>
+    <h1>{{countdown}}</h1>
   </div>
 </template>
 
@@ -30,7 +30,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../../shared/style/main.scss';
-.somthingsensible{
+h1{
   color: $primary;
   font-size: 500px
 }
