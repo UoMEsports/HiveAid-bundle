@@ -16,7 +16,7 @@ install:
 
   # move bundle to correct location relative to nodecg
   - 'mv $TRAVIS_BUILD_DIR bundles/'
-  - cd bundles/overlay-bundle
+  - cd bundles/hiveaid-bundle
 
 script:
   - npm run static
