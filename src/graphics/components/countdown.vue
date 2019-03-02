@@ -1,6 +1,6 @@
 <template>
-  <div class="lower-third">
-    <h1>Test</h1>
+  <div class="countdown">
+    <h1 class='countdown'>{{countdown}}</h1>
   </div>
 </template>
 
