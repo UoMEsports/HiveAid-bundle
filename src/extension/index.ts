@@ -6,4 +6,5 @@ export = (nodecg: NodeCG) => {
 
 	require('./countdown');
 	require('./names');
+	require('./total');
 };
