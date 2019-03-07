@@ -9,5 +9,5 @@ Vue.use(Vuetify);
 Vue.use(NodeCGVue);
 
 new Vue({
-	render: h => h(Producer)
+    render: h => h(Producer)
 }).$mount('#app');
