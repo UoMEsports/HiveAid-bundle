@@ -16,6 +16,7 @@
     "build:browser": "trash .cache && cross-env NODE_ENV=production npm run bundle",
     "build:extension": "trash extension && tsc -b tsconfig.json",
     "watch": "npm run bundle",
+    "mock-donations": "node ./scripts/test_donation_server.js",
     "start": "node ../.."
   },
   "license": "AGPL-3.0",
