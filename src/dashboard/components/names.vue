@@ -48,7 +48,7 @@
       </v-flex>
 
       <v-list
-        v-show="Object.keys(this.names).length > 0"
+        v-show="Object.keys(names).length > 0"
         two-line
       >
         <template v-for="(item, index) in names">

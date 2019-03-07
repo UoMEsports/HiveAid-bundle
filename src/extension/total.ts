@@ -13,96 +13,96 @@ const total = nodecg.Replicant<Total>('total');
 let disconnectWarningTimeout: NodeJS.Timer | null;
 
 autoUpdateTotal.on('change', (newVal: boolean) => {
-	if (newVal) {
-		nodecg.log.info('Automatic updating of donation total enabled');
-		manuallyUpdateTotal(true);
-	} else {
-		nodecg.log.warn('Automatic updating of donation total DISABLED');
-	}
+    if (newVal) {
+        nodecg.log.info('Automatic updating of donation total enabled');
+        manuallyUpdateTotal(true);
+    } else {
+        nodecg.log.warn('Automatic updating of donation total DISABLED');
+    }
 });
 
 recordTrackerEnabled.on('change', (newVal: boolean) => {
-	if (newVal) {
-		nodecg.log.info('Milestone tracker enabled');
-	} else {
-		nodecg.log.warn('Milestone tracker DISABLED');
-	}
+    if (newVal) {
+        nodecg.log.info('Milestone tracker enabled');
+    } else {
+        nodecg.log.warn('Milestone tracker DISABLED');
+    }
 });
 
 if (nodecg.bundleConfig && nodecg.bundleConfig.donationSocketUrl) {
-	// tslint:disable-next-line:no-var-requires
-	const socket = require('socket.io-client')(nodecg.bundleConfig.donationSocketUrl);
-	let loggedXhrPollError = false;
+    // tslint:disable-next-line:no-var-requires
+    const socket = require('socket.io-client')(nodecg.bundleConfig.donationSocketUrl);
+    let loggedXhrPollError = false;
 
-	socket.on('connect', () => {
-		nodecg.log.info('Connected to donation socket', nodecg.bundleConfig.donationSocketUrl);
-		if (disconnectWarningTimeout) {
-			clearTimeout(disconnectWarningTimeout);
-			disconnectWarningTimeout = null;
-		}
-		loggedXhrPollError = false;
-	});
+    socket.on('connect', () => {
+        nodecg.log.info('Connected to donation socket', nodecg.bundleConfig.donationSocketUrl);
+        if (disconnectWarningTimeout) {
+            clearTimeout(disconnectWarningTimeout);
+            disconnectWarningTimeout = null;
+        }
+        loggedXhrPollError = false;
+    });
 
-	socket.on('connect_error', (err: Error) => {
-		if (err.message === 'xhr poll error') {
-			if (loggedXhrPollError) {
-				return;
-			}
+    socket.on('connect_error', (err: Error) => {
+        if (err.message === 'xhr poll error') {
+            if (loggedXhrPollError) {
+                return;
+            }
 
-			loggedXhrPollError = true;
-		}
+            loggedXhrPollError = true;
+        }
 
-		nodecg.log.error('Donation socket connect_error:', err);
-	});
+        nodecg.log.error('Donation socket connect_error:', err);
+    });
 
-	// Get initial data, then listen for donations.
-	updateTotal().then(() => {
-		socket.on('donation', (data: any) => {
-			if (!data || !data.rawAmount) {
-				return;
-			}
+    // Get initial data, then listen for donations.
+    updateTotal().then(() => {
+        socket.on('donation', (data: any) => {
+            if (!data || !data.rawAmount) {
+                return;
+            }
 
-			const donation = formatDonation(data);
-			nodecg.sendMessage('donation', donation);
+            const donation = formatDonation(data);
+            nodecg.sendMessage('donation', donation);
 
-			if (autoUpdateTotal.value) {
-				total.value = {
-					raw: donation.rawNewTotal,
-					formatted: donation.newTotal
-				};
-			}
-		});
-	});
+            if (autoUpdateTotal.value) {
+                total.value = {
+                    raw: donation.rawNewTotal,
+                    formatted: donation.newTotal
+                };
+            }
+        });
+    });
 
-	socket.on('disconnect', () => {
-		if (!disconnectWarningTimeout) {
-			disconnectWarningTimeout = setTimeout(() => {
-				nodecg.log.error('Disconnected from donation socket, can not receive donations!');
-			}, 30000);
-		}
-	});
+    socket.on('disconnect', () => {
+        if (!disconnectWarningTimeout) {
+            disconnectWarningTimeout = setTimeout(() => {
+                nodecg.log.error('Disconnected from donation socket, can not receive donations!');
+            }, 30000);
+        }
+    });
 
-	socket.on('error', (err: Error) => {
-		nodecg.log.error('Donation socket error:', err);
-	});
+    socket.on('error', (err: Error) => {
+        nodecg.log.error('Donation socket error:', err);
+    });
 } else {
-	// tslint:disable-next-line:prefer-template
-	nodecg.log.warn(`cfg/${nodecg.bundleName}.json is missing the "donationSocketUrl" property.` +
+    // tslint:disable-next-line:prefer-template
+    nodecg.log.warn(`cfg/${nodecg.bundleName}.json is missing the "donationSocketUrl" property.` +
 		'\n\tThis means that we cannot receive new incoming PayPal donations from the tracker,' +
 		'\n\tand that donation notifications will not be displayed as a result. The total also will not update.');
 }
 
 nodecg.listenFor('setTotal', ({type, newValue}: {type: string; newValue: string}) => {
-	if (type === 'cash') {
-		total.value = {
-			raw: parseFloat(newValue),
-			formatted: formatPounds(newValue, {pence: false})
-		};
-	} else if (type === 'bits') {
-		bitsTotal.value = parseInt(newValue, 10);
-	} else {
-		nodecg.log.error('Unexpected "type" sent to setTotal: "%s"', type);
-	}
+    if (type === 'cash') {
+        total.value = {
+            raw: parseFloat(newValue),
+            formatted: formatPounds(newValue, {pence: false})
+        };
+    } else if (type === 'bits') {
+        bitsTotal.value = parseInt(newValue, 10);
+    } else {
+        nodecg.log.error('Unexpected "type" sent to setTotal: "%s"', type);
+    }
 });
 
 nodecg.listenFor('updateTotal', manuallyUpdateTotal);
@@ -112,59 +112,59 @@ nodecg.listenFor('updateTotal', manuallyUpdateTotal);
  * @param [silent = false] - Whether to print info to logs or not.
  * @param [cb] - The callback to invoke after the total has been updated.
  */
-function manuallyUpdateTotal(silent: boolean, cb?: ListenForCb) {
-	if (!silent) {
-		nodecg.log.info('Manual donation total update button pressed, invoking update...');
-	}
+function manuallyUpdateTotal(silent: boolean, cb?: ListenForCb): void {
+    if (!silent) {
+        nodecg.log.info('Manual donation total update button pressed, invoking update...');
+    }
 
-	updateTotal().then(updated => {
-		if (updated) {
-			nodecg.sendMessage('total:manuallyUpdated', total.value);
-			nodecg.log.info('Donation total successfully updated');
-		} else {
-			nodecg.log.info('Donation total unchanged, not updated');
-		}
+    updateTotal().then(updated => {
+        if (updated) {
+            nodecg.sendMessage('total:manuallyUpdated', total.value);
+            nodecg.log.info('Donation total successfully updated');
+        } else {
+            nodecg.log.info('Donation total unchanged, not updated');
+        }
 
-		if (cb && !cb.handled) {
-			cb(null, updated);
-		}
-	}).catch(error => {
-		if (cb && !cb.handled) {
-			cb(error);
-		}
-	});
+        if (cb && !cb.handled) {
+            cb(null, updated);
+        }
+    }).catch(error => {
+        if (cb && !cb.handled) {
+            cb(error);
+        }
+    });
 }
 
 /**
  * Updates the "total" replicant with the latest value from the GDQ Tracker API.
  */
-async function updateTotal() {
-	try {
-		const stats = await request({
-			uri: 'https://www.dropbox.com/s/h7qivvpn4izmbi5/total.json?dl=1',
-			json: true
-		});
+async function updateTotal(): boolean {
+    try {
+        const stats = await request({
+            uri: 'https://www.dropbox.com/s/h7qivvpn4izmbi5/total.json?dl=1',
+            json: true
+        });
 
-		const freshTotal = parseFloat(stats.agg.amount || 0);
-		if (freshTotal === total.value.raw) {
-			return false;
-		}
+        const freshTotal = parseFloat(stats.agg.amount || 0);
+        if (freshTotal === total.value.raw) {
+            return false;
+        }
 
-		total.value = {
-			raw: freshTotal,
-			formatted: formatPounds(freshTotal, {pence: false})
-		};
+        total.value = {
+            raw: freshTotal,
+            formatted: formatPounds(freshTotal, {pence: false})
+        };
 
-		return true;
-	} catch (error) {
-		let msg = 'Could not get donation total, unknown error';
-		if (error) {
-			msg = `Could not get donation total:\n${error.message}`;
-		}
-		nodecg.log.error(msg);
-	}
+        return true;
+    } catch (error) {
+        let msg = 'Could not get donation total, unknown error';
+        if (error) {
+            msg = `Could not get donation total:\n${error.message}`;
+        }
+        nodecg.log.error(msg);
+    }
 
-	return false;
+    return false;
 }
 
 /**
@@ -173,21 +173,21 @@ async function updateTotal() {
  * @returns A formatted donation.
  */
 function formatDonation({rawAmount, newTotal}: {rawAmount: string | number; newTotal: string | number}) {
-	const parsedRawAmount = typeof rawAmount === 'string' ? parseFloat(rawAmount) : rawAmount;
-	const parsedRawNewTotal = typeof newTotal === 'string' ? parseFloat(newTotal) : newTotal;
+    const parsedRawAmount = typeof rawAmount === 'string' ? parseFloat(rawAmount) : rawAmount;
+    const parsedRawNewTotal = typeof newTotal === 'string' ? parseFloat(newTotal) : newTotal;
 
-	// Format amount
-	let amount = formatPounds(parsedRawAmount);
+    // Format amount
+    let amount = formatPounds(parsedRawAmount);
 
-	// If a whole dollar, get rid of cents
-	if (amount.endsWith('.00')) {
-		amount = amount.substr(0, amount.length - 3);
-	}
+    // If a whole dollar, get rid of cents
+    if (amount.endsWith('.00')) {
+        amount = amount.substr(0, amount.length - 3);
+    }
 
-	return {
-		amount,
-		rawAmount: parsedRawAmount,
-		newTotal: formatPounds(parsedRawNewTotal, {pence: false}),
-		rawNewTotal: parsedRawNewTotal
-	};
+    return {
+        amount,
+        rawAmount: parsedRawAmount,
+        newTotal: formatPounds(parsedRawNewTotal, {pence: false}),
+        rawNewTotal: parsedRawNewTotal
+    };
 }
