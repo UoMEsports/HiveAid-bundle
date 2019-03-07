@@ -27,7 +27,9 @@
     "luxon": "^1.11.3",
     "milliseconds": "^1.0.3",
     "nanotimer": "^0.3.15",
-    "parse-ms": "^2.0.0"
+    "parse-ms": "^2.0.0",
+    "request-promise-native": "^1.0.7",
+    "socket.io-client": "^2.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
