@@ -3,7 +3,8 @@ import {Names, NameObject} from '../types/schemas/names';
 import {NameArgs} from '../types/nameArgs';
 
 const nodecg = nodecgApiContext.get();
-const clone = require('clone');
+import clone = require('clone');
+require('clone');
 
 const names = nodecg.Replicant<Names>('names');
 
@@ -16,33 +17,33 @@ nodecg.listenFor('editStaff', edit);
 
 // Append item to the list
 function add(args: NameArgs): void {
-	const newList: Names = clone(names.value);
-	const index = newList.index++;
+    const newList: Names = clone(names.value);
+    const index = newList.index++;
 
-	newList.items = newList.items || {};
+    newList.items = newList.items || {};
 
-	newList.items[index] = {id: index, realName: args.realName, fullName: args.fullName, alias: args.alias, social: args.social};
+    newList.items[index] = {id: index, realName: args.realName, fullName: args.fullName, alias: args.alias, social: args.social};
 
-	names.value = newList;
+    names.value = newList;
 }
 
 // Delete item from list
 // Disallows deletion of currently shown lower third
 function del(id: number): void {
-	if (!id) {
-		return;
-	}
+    if (!id) {
+        return;
+    }
 
-	const newList = clone(names.value);
-	delete newList.items[id];
+    const newList = clone(names.value);
+    delete newList.items[id];
 
-	names.value = newList;
+    names.value = newList;
 }
 
 // Modify item in list
 function edit(nameObj: NameObject): void {
-	const newList = clone(names.value);
-	newList.items[nameObj.id] = nameObj;
+    const newList = clone(names.value);
+    newList.items[nameObj.id] = nameObj;
 
-	names.value = newList;
+    names.value = newList;
 }
