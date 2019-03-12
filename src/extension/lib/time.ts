@@ -9,7 +9,6 @@ import * as convertUnitToMs from 'milliseconds';
 import {MsObj} from '../../types/time';
 import {TimeStruct} from '../../types/time';
 
-
 /**
  * Constructs a new TimeStruct with the provided number of milliseconds.
  * @param milliseconds - The value to instantiate this TimeObject with, in milliseconds.
@@ -57,7 +56,7 @@ export function formatMilliseconds(inputMs: number): string {
  * @returns An object representing each dimension of the time.
  */
 export function parseMilliseconds(milliseconds: number): MsObj {
-    return (parseMsToObj as any)(milliseconds) as MsObj;
+    return parseMsToObj(milliseconds) as MsObj;
 }
 
 /**

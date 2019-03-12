@@ -138,7 +138,7 @@ function manuallyUpdateTotal(silent: boolean, cb?: ListenForCb): void {
 /**
  * Updates the "total" replicant with the latest value from the GDQ Tracker API.
  */
-async function updateTotal(): boolean {
+async function updateTotal(): Promise<boolean> {
     try {
         const stats = await request({
             uri: 'https://www.dropbox.com/s/h7qivvpn4izmbi5/total.json?dl=1',
@@ -172,7 +172,7 @@ async function updateTotal(): boolean {
  * from a Postback URL on the tracker.
  * @returns A formatted donation.
  */
-function formatDonation({rawAmount, newTotal}: {rawAmount: string | number; newTotal: string | number}) {
+function formatDonation({rawAmount, newTotal}: {rawAmount: string | number; newTotal: string | number}): {amount: string; rawAmount: number; newTotal: string; rawNewTotal: number} {
     const parsedRawAmount = typeof rawAmount === 'string' ? parseFloat(rawAmount) : rawAmount;
     const parsedRawNewTotal = typeof newTotal === 'string' ? parseFloat(newTotal) : newTotal;
 
