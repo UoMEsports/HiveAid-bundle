@@ -7,13 +7,15 @@ import {EventEmitter} from 'events';
 import parseMsToObj = require('parse-ms');
 import * as convertUnitToMs from 'milliseconds';
 import {MsObj} from '../../types/time';
+import {TimeStruct} from '../../types/time';
+
 
 /**
  * Constructs a new TimeStruct with the provided number of milliseconds.
  * @param milliseconds - The value to instantiate this TimeObject with, in milliseconds.
  * @returns A populated TimeStruct object.
  */
-export function createTimeStruct(milliseconds = 0): any {
+export function createTimeStruct(milliseconds = 0): TimeStruct {
     const parsedTime = parseMilliseconds(milliseconds);
 
     return {
