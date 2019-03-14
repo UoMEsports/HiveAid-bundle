@@ -17,27 +17,27 @@
             label="First Name"
             :rules="[required]"
             dark
-          />
+          ></v-text-field>
 
           <v-text-field
             v-model="lastName"
             label="Last Name"
             :rules="[required]"
             dark
-          />
+          ></v-text-field>
 
           <v-text-field
             v-model="alias"
             label="Alias"
             dark
-          />
+          ></v-text-field>
 
           <v-text-field
             v-model="social"
             prepend-icon="alternate_email"
             label="Twitter Handle"
             dark
-          />
+          ></v-text-field>
           <v-btn
             color="green"
             @click="add"
@@ -48,7 +48,7 @@
       </v-flex>
 
       <v-list
-        v-show="Object.keys(this.names).length > 0"
+        v-show="Object.keys(names).length > 0"
         two-line
       >
         <template v-for="(item, index) in names">

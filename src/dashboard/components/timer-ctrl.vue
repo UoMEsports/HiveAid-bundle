@@ -34,7 +34,7 @@
     <v-text-field
       v-model="newText"
       dark
-    />
+    ></v-text-field>
     <v-btn
       color="green"
       @click="setText"

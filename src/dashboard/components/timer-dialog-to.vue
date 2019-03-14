@@ -8,7 +8,7 @@
       format="24hr"
       :dark="true"
       color="blue lighten-1"
-    />
+    ></v-time-picker>
   </div>
 </template>
 
