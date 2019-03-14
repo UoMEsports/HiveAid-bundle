@@ -7,8 +7,8 @@ import 'vuetify/dist/vuetify.min.css';
 Vue.use(Vuetify);
 Vue.use(NodeCGVue);
  
-import Omnibar from './components/omnibar.vue';
+import ComingUp from './components/coming-up.vue';
  
 new Vue({
-    render: h => h(Omnibar)
+    render: h => h(ComingUp)
 }).$mount('#app');

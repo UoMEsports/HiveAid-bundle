@@ -76,10 +76,10 @@
         "workspace": "1: Main"
       },
       {
-        "name": "omnibar",
-        "title": "Omnibar",
+        "name": "coming-up",
+        "title": "Coming Up",
         "width": 2,
-        "file": "omnibar.html",
+        "file": "coming-up.html",
         "headerColor": "#525F78",
         "workspace": "1: Main"
       },
