@@ -8,7 +8,7 @@
       inline
       controls
       rounded
-    />
+    ></number-input>
     <h2>Seconds</h2>
     <number-input
       v-model="seconds"
@@ -18,7 +18,7 @@
       controls
       rounded
       :step="10"
-    />
+    ></number-input>
   </div>
 </template>
 

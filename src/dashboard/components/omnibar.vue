@@ -5,7 +5,7 @@
       v-model="newText"
       label="Coming Up Text"
       dark
-    />
+    ></v-text-field>
     <v-btn
       color="green"
       @click="setText"

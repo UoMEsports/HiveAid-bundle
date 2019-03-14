@@ -17,27 +17,27 @@
             label="First Name"
             :rules="[required]"
             dark
-          />
+          ></v-text-field>
 
           <v-text-field
             v-model="lastName"
             label="Last Name"
             :rules="[required]"
             dark
-          />
+          ></v-text-field>
 
           <v-text-field
             v-model="alias"
             label="Alias"
             dark
-          />
+          ></v-text-field>
 
           <v-text-field
             v-model="social"
             prepend-icon="alternate_email"
             label="Twitter Handle"
             dark
-          />
+          ></v-text-field>
           <v-btn
             color="green"
             @click="add"
