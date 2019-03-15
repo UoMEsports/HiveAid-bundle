@@ -7,7 +7,7 @@
 
 export interface Names {
 	index: number;
-	items?: NamesObject;
+	items?: NameObject[];
 }
 export interface NameObject {
 	id: number;

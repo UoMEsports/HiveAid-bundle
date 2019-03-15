@@ -20,7 +20,10 @@
 
     "properties": {
         "index": { "type": "number", "default": 1},
-        "items": { "$ref": "#/definitions/namesObject"}
+        "items": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/nameObject" }
+        }
     },
     "required": ["index"]
   }

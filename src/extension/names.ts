@@ -20,22 +20,30 @@ function add(args: NameArgs): void {
     const newList: Names = clone(names.value);
     const index = newList.index++;
 
-    newList.items = newList.items || {};
+    // ensure newList.items is an array
+    newList.items = newList.items || [];
 
-    newList.items[index] = {id: index, realName: args.realName, fullName: args.fullName, alias: args.alias, social: args.social};
+    newList.items.push({id: index, realName: args.realName, fullName: args.fullName, alias: args.alias, social: args.social});
 
     names.value = newList;
 }
 
 // Delete item from list
-// Disallows deletion of currently shown lower third
 function del(id: number): void {
-    if (!id) {
-        return;
-    }
+    // check id is not 0
+    if (!id || id < 1) return;
 
     const newList = clone(names.value);
-    delete newList.items[id];
+
+    // check at least one item exists
+    if (!newList.items || newList.items.length < 1) return;
+
+    const index = newList.items.findIndex(x => x.id === id);
+
+    // check item with id exists
+    if (index === undefined) return;
+
+    delete newList.items[index];
 
     names.value = newList;
 }
