@@ -3,14 +3,15 @@ import {Names, NameObject} from '../types/schemas/names';
 import {NameArgs} from '../types/nameArgs';
 
 const nodecg = nodecgApiContext.get();
+
 import clone = require('clone');
 require('clone');
 
 const names = nodecg.Replicant<Names>('names');
 
-nodecg.listenFor('addStaff', add);
-nodecg.listenFor('delStaff', del);
-nodecg.listenFor('editStaff', edit);
+nodecg.listenFor('addName', add);
+nodecg.listenFor('delName', del);
+nodecg.listenFor('editName', edit);
 
 // List mutation functions
 /************************/

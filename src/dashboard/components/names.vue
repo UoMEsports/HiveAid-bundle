@@ -118,7 +118,7 @@ export default {
             if (this.$refs.form.validate()) {
                 const fullName = this.firstName + ' ' + (this.alias ? `"${this.alias}" ` : '') + this.lastName;
                 const realName = this.firstName + ' ' + this.lastName;
-                nodecg.sendMessage('addStaff', {
+                nodecg.sendMessage('addName', {
                     realName,
                     fullName,
                     alias: this.alias,
@@ -127,7 +127,7 @@ export default {
             }
         },
         del(id) {
-            nodecg.sendMessage('delStaff', id);
+            nodecg.sendMessage('delName', id);
         }
     }
 };
