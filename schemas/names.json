@@ -22,7 +22,8 @@
         "index": { "type": "number", "default": 1},
         "items": {
             "type": "array",
-            "items": { "$ref": "#/definitions/nameObject" }
+            "items": { "$ref": "#/definitions/nameObject" },
+            "default": []
         }
     },
     "required": ["index"]

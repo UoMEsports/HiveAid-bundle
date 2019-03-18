@@ -20,7 +20,8 @@
         "index": { "type": "number", "default": 1},
         "items": {
             "type": "array",
-            "items": { "$ref": "#/definitions/tickObject" }
+            "items": { "$ref": "#/definitions/tickObject" },
+            "default": []
         }
     },
     "required": ["index"]
