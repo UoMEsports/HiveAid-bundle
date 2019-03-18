@@ -7,7 +7,8 @@
             "type": "object",
             "properties": {
                 "id":       { "type": "number" },
-                "message":   { "type": "string" }
+                "message":  { "type": "string" }
+
             },
             "required": ["id", "message"]
         }
@@ -17,7 +18,10 @@
 
     "properties": {
         "index": { "type": "number", "default": 1},
-        "items": { "$ref": "#/definitions/tickObject"}
+        "items": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/tickObject" }
+        }
     },
     "required": ["index"]
-}
+  }

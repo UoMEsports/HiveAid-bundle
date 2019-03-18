@@ -1,6 +1,7 @@
 
 import * as nodecgApiContext from './util/nodecg-api-context';
-import {OmnibarTicks} from '../types/schemas/omnibarTicks';
+import {OmnibarTicks, TickObject} from '../types/schemas/omnibarTicks';
+import {TickArgs} from '../types/ticker';
 import clone = require('clone');
 require('clone');
 
@@ -11,53 +12,79 @@ const list = nodecg.Replicant<OmnibarTicks>('omnibarTicks');
 
 setInterval(next, 6000);
 
-nodecg.listenFor('nextOmnibarTick', next);
-nodecg.listenFor('addOmnibarTick', add);
-nodecg.listenFor('delOmnibarTick', del);
-nodecg.listenFor('editOmnibarTick', edit);
 
 // Playback functions
 /*******************/
-// A QoL function to play next lower third
-// Only runs if a lowerthird is currently being shown, and more than 1 items are in list
+nodecg.listenFor('nextOmnibarTick', next);
 
+// Play next item in list
+// Only runs if more than 1 ticks are in list
 function next(): void {
-    let ids = Object.keys(list.value.items as object)
-        .map(val => parseInt(val))
-        .sort((a, b) => a - b);
+    list.value.items = list.value.items || [];
 
-    if (current.value > 0 && ids.length > 1) {
-        const currentIndex = ids.indexOf(current.value);
+    // get array of just ids
+    let ids = list.value.items.map(val => val.id);
+
+    if (current.value >= 0 && ids.length > 1) {
+        // current value is 0 when nothing is running
+        const currentIndex = ids.indexOf(current.value) || 0;
+
+        // add one to id, loop back round to 0 if at end
         const nextIndex = (currentIndex + 1) % ids.length;
         nodecg.sendMessage('playLowerThird', ids[nextIndex]);
     }
 }
+
+
 // List mutation functions
 /************************/
-// Append item to the list
+nodecg.listenFor('addOmnibarTick', add);
+nodecg.listenFor('delOmnibarTick', del);
+nodecg.listenFor('editOmnibarTick', edit);
 
-function add(args): void {
-    let newList = clone(list.value);
-    const index = newList.index++;
-    newList.items[index] = {id: index, message: args.message};
+// Append item to the list
+function add(args: TickArgs): void {
+    const newList: OmnibarTicks = clone(list.value);
+
+    // Get id for this object, and THEN increment index stored in replicant
+    const id = newList.index++;
+
+    // ensure newList.items is an array
+    newList.items = newList.items || [];
+
+    newList.items.push({id: id, message: args.message});
+
     list.value = newList;
 }
 
 // Delete item from list
-// Disallows deletion of currently shown lower third
+// Disallows deletion of currently shown tick
+function del(id: number): void {
+    // check id is not 0
+    if (!id || id < 1) return;
 
-function del(id): void {
-    if (id != current.value) {
-        let newList = clone(list.value);
-        delete newList.items[id];
-        list.value = newList;
-    }
+    const newList = clone(list.value);
+
+    // check at least one item exists
+    if (!newList.items || newList.items.length < 1) return;
+
+    // find index of object with the same id we're looking for
+    const index = newList.items.findIndex(x => x.id === id);
+
+    // check item with id exists
+    if (index === undefined) return;
+
+    delete newList.items[index];
+
+    list.value = newList;
 }
 
 // Modify item in list
-
-function edit(args): void {
+function edit(args: TickObject): void {
     let newList = clone(list.value);
-    newList.items[args.id] = {id: args.id, header: args.header, body: args.body};
+
+    newList.items = newList.items || [];
+
+    newList.items[args.id] = {id: args.id, message: args.message};
     list.value = newList;
 }
