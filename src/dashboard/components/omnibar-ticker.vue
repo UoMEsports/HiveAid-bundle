@@ -91,13 +91,13 @@ export default {
         },
         add() {
             if (this.$refs.form.validate()) {
-                nodecg.sendMessage('addTick', {
+                nodecg.sendMessage('addOmnibarTick', {
                     message: this.message
                 });
             }
         },
         del(id) {
-            nodecg.sendMessage('delTick', id);
+            nodecg.sendMessage('delOmnibarTick', id);
         }
     }
 };
