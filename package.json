@@ -92,6 +92,14 @@
         "workspace": "1: Main"
       },
       {
+        "name": "omnibar-ticker",
+        "title": "Omnibar Ticker",
+        "width": 3,
+        "file": "omnibar-ticker.html",
+        "headerColor": "#525F78",
+        "workspace": "1: Main"
+      },
+      {
         "name": "timer-dialog-to",
         "title": "Set Timer",
         "width": 4,
