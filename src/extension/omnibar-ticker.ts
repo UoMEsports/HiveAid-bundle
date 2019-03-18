@@ -8,7 +8,7 @@ require('clone');
 const nodecg = nodecgApiContext.get();
 
 const current = nodecg.Replicant<number>('currentOmnibarTick');
-const list = nodecg.Replicant<OmnibarTicks>('omnibarTicks');
+const ticks = nodecg.Replicant<OmnibarTicks>('omnibarTicks');
 
 setInterval(next, 6000);
 
@@ -20,10 +20,10 @@ nodecg.listenFor('nextOmnibarTick', next);
 // Play next item in list
 // Only runs if more than 1 ticks are in list
 function next(): void {
-    list.value.items = list.value.items || [];
+    ticks.value.items = ticks.value.items || [];
 
     // get array of just ids
-    let ids = list.value.items.map(val => val.id);
+    let ids = ticks.value.items.map(val => val.id);
 
     if (current.value >= 0 && ids.length > 1) {
         // current value is 0 when nothing is running
@@ -44,17 +44,17 @@ nodecg.listenFor('editOmnibarTick', edit);
 
 // Append item to the list
 function add(args: TickArgs): void {
-    const newList: OmnibarTicks = clone(list.value);
+    const newTicks: OmnibarTicks = clone(ticks.value);
 
     // Get id for this object, and THEN increment index stored in replicant
-    const id = newList.index++;
+    const id = newTicks.index++;
 
-    // ensure newList.items is an array
-    newList.items = newList.items || [];
+    // ensure newTicks.items is an array
+    newTicks.items = newTicks.items || [];
 
-    newList.items.push({id: id, message: args.message});
+    newTicks.items.push({id: id, message: args.message});
 
-    list.value = newList;
+    ticks.value = newTicks;
 }
 
 // Delete item from list
@@ -63,28 +63,18 @@ function del(id: number): void {
     // check id is not 0
     if (!id || id < 1) return;
 
-    const newList = clone(list.value);
+    const newList = clone(ticks.value.items) || [];
 
-    // check at least one item exists
-    if (!newList.items || newList.items.length < 1) return;
-
-    // find index of object with the same id we're looking for
-    const index = newList.items.findIndex(x => x.id === id);
-
-    // check item with id exists
-    if (index === undefined) return;
-
-    delete newList.items[index];
-
-    list.value = newList;
+    // filter out element that matches our id
+    ticks.value.items = newList.filter(x => x.id !== id);
 }
 
 // Modify item in list
 function edit(args: TickObject): void {
-    let newList = clone(list.value);
+    let newList = clone(ticks.value);
 
     newList.items = newList.items || [];
 
     newList.items[args.id] = {id: args.id, message: args.message};
-    list.value = newList;
+    ticks.value = newList;
 }
