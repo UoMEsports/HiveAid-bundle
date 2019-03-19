@@ -5,14 +5,7 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export interface Names {
-	index: number;
-	items?: NameObject[];
-}
-export interface NameObject {
-	id: number;
-	realName: string;
-	fullName: string;
-	alias: string;
-	social: string;
+export interface Total {
+	raw: number;
+	formatted: string;
 }

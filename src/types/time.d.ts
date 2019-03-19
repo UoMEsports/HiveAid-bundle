@@ -7,3 +7,8 @@ export interface MsObj {
 	microseconds: number;
 	nanoseconds: number;
 }
+export interface TimeStruct extends MsObj {
+	formatted: string;
+	raw: number;
+	timestamp: number;
+}

@@ -5,14 +5,11 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export interface Names {
+export interface OmnibarTicks {
 	index: number;
-	items?: NameObject[];
+	items?: TickObject[];
 }
-export interface NameObject {
+export interface TickObject {
 	id: number;
-	realName: string;
-	fullName: string;
-	alias: string;
-	social: string;
+	message: string;
 }

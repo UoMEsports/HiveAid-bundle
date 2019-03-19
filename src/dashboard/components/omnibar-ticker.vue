@@ -13,31 +13,12 @@
           v-model="valid"
         >
           <v-text-field
-            v-model="firstName"
-            label="First Name"
+            v-model="message"
+            label="Message"
             :rules="[required]"
             dark
           ></v-text-field>
-
-          <v-text-field
-            v-model="lastName"
-            label="Last Name"
-            :rules="[required]"
-            dark
-          ></v-text-field>
-
-          <v-text-field
-            v-model="alias"
-            label="Alias"
-            dark
-          ></v-text-field>
-
-          <v-text-field
-            v-model="social"
-            prepend-icon="alternate_email"
-            label="Twitter Handle"
-            dark
-          ></v-text-field>
+          
           <v-btn
             color="green"
             @click="add"
@@ -48,10 +29,10 @@
       </v-flex>
 
       <v-list
-        v-show="Object.keys(names).length > 0"
+        v-show="Object.keys(omnibarTicks).length > 0"
         two-line
       >
-        <template v-for="(item, index) in names">
+        <template v-for="(item, index) in omnibarTicks">
           <v-flex
             :key="index"
             xs12
@@ -63,12 +44,9 @@
               <v-card-title primary-title>
                 <div>
                   <h3 class="headline mb-0">
-                    {{ item.fullName }}
+                    {{ item.id }}
                   </h3>
-                  <h3>{{ item.alias }}</h3>
-                  <h5 v-if="item.social">
-                    @{{ item.social }}
-                  </h5>
+                  <h3>{{ item.message }}</h3>
                 </div>
               </v-card-title>
 
@@ -92,42 +70,34 @@
 <script>
 const clone = require('clone');
 
-const names = nodecg.Replicant('names');
+const omnibarTicks = nodecg.Replicant('omnibarTicks');
 export default {
     data() {
         return {
-            names: {},
-            firstName: '',
-            lastName: '',
-            alias: '',
-            social: '',
+            omnibarTicks: {},
+            message: '',
             valid: false,
             required: value => !!value || 'Required.'
         };
     },
     created() {
-        NodeCG.waitForReplicants(names).then(this.listen);
+        NodeCG.waitForReplicants(omnibarTicks).then(this.listen);
     },
     methods: {
         listen() {
-            names.on('change', newVal => {
-                this.names = clone(newVal.items);
+            omnibarTicks.on('change', newVal => {
+                this.omnibarTicks = clone(newVal.items);
             });
         },
         add() {
             if (this.$refs.form.validate()) {
-                const fullName = this.firstName + ' ' + (this.alias ? `"${this.alias}" ` : '') + this.lastName;
-                const realName = this.firstName + ' ' + this.lastName;
-                nodecg.sendMessage('addName', {
-                    realName,
-                    fullName,
-                    alias: this.alias,
-                    social: this.social
+                nodecg.sendMessage('addOmnibarTick', {
+                    message: this.message
                 });
             }
         },
         del(id) {
-            nodecg.sendMessage('delName', id);
+            nodecg.sendMessage('delOmnibarTick', id);
         }
     }
 };

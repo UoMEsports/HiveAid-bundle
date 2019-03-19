@@ -6,4 +6,6 @@ export = (nodecg: NodeCG) => {
 
     require('./countdown');
     require('./names');
+    require('./total');
+    require('./omnibar-ticker')
 };

@@ -2,17 +2,15 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "additionalProperties": false,
     "definitions": {
-        "nameObject": {
+        "tickObject": {
             "additionalProperties": false,
             "type": "object",
             "properties": {
                 "id":       { "type": "number" },
-                "realName": { "type": "string" },
-                "fullName": { "type": "string" },
-                "alias":    { "type": "string" },
-                "social":   { "type": "string" }
+                "message":  { "type": "string" }
+
             },
-            "required": ["id", "realName", "fullName", "alias", "social"]
+            "required": ["id", "message"]
         }
     },
 
@@ -22,7 +20,7 @@
         "index": { "type": "number", "default": 1},
         "items": {
             "type": "array",
-            "items": { "$ref": "#/definitions/nameObject" },
+            "items": { "$ref": "#/definitions/tickObject" },
             "default": []
         }
     },

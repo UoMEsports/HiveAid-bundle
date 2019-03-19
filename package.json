@@ -27,7 +27,9 @@
     "luxon": "^1.11.3",
     "milliseconds": "^1.0.3",
     "nanotimer": "^0.3.15",
-    "parse-ms": "^2.0.0"
+    "parse-ms": "^2.0.0",
+    "request-promise-native": "^1.0.7",
+    "socket.io-client": "^2.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
@@ -74,10 +76,10 @@
         "workspace": "1: Main"
       },
       {
-        "name": "omnibar",
-        "title": "Omnibar",
+        "name": "coming-up",
+        "title": "Coming Up",
         "width": 2,
-        "file": "omnibar.html",
+        "file": "coming-up.html",
         "headerColor": "#525F78",
         "workspace": "1: Main"
       },
@@ -86,6 +88,14 @@
         "title": "Names",
         "width": 3,
         "file": "names.html",
+        "headerColor": "#525F78",
+        "workspace": "1: Main"
+      },
+      {
+        "name": "omnibar-ticker",
+        "title": "Omnibar Ticker",
+        "width": 3,
+        "file": "omnibar-ticker.html",
         "headerColor": "#525F78",
         "workspace": "1: Main"
       },
