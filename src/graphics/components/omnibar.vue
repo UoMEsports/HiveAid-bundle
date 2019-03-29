@@ -1,27 +1,18 @@
 <template>
     <div class="omnibar">
-        <img
-            id="logo"
-            src="../img/omnibar-logo.png"
-        >
+        <img id="logo" src="../img/omnibar-logo.png">
         <div id="main">
-            <div id="label"></div>
-            <div
-                id="body"
-                ref="body"
-            >
-                <div
-                    id="content"
-                    ref="content"
-                ></div>
+            <div id="label" ref="label" :style="'background-color: ' + contentColour"></div>
+            <div id="body" ref="body" :style="'border-bottom-color: ' + contentColour">
+                <div id="content" ref="content"></div>
             </div>
-            <div id="cta">
+            <div id="cta" ref="cta">
                 <div id="cta-1">
-                    <span style="color: #f47425;">HiveAid 2019</span> supports <span style="font-weight: 800;">SpecialEffect</span>
+                    <span style="color: #FFD421;">HiveAid 2019</span> supports <span style="font-weight: 800;">SpecialEffect</span>
                 </div>
 
                 <div id="cta-2">
-                    Donate now at <span style="color: #f47425; font-weight: 800;">honeypot.uomesports.co.uk</span>
+                    Donate now at <span style="color: #FFD421; font-weight: 800;">honeypot.uomesports.co.uk</span>
                 </div>
             </div>
         </div>
@@ -29,15 +20,15 @@
             <div id="total-currency">
                 £
             </div>
-            <div
-                id="total-amount"
-                ref="totalAmount"
-            ></div>
+            <div id="total-amount" ref="totalAmount"></div>
         </div>
     </div>
 </template>
 
 <script>
+const INTERVAL = 10;
+const onNow = nodecg.Replicant('onNow');
+const comingUp = nodecg.Replicant('comingUp');
 const total = nodecg.Replicant('total');
 import {TweenMax} from "gsap/TweenMax";
 
@@ -45,13 +36,22 @@ export default {
     data () {
         return {
             total: 0,
+            tl: new TimelineLite({autoRemoveChildren: true}),
+            contentColour: '#FFD421'
         }
     },
     created () {
     },
     mounted () {
-        this.$refs.totalAmount.setAttribute("rawvalue", 0);
+        this.tl.set(this.$refs.content, {y: '100%'});
+
         total.on('change', this.totalChanged);
+        setTimeout(() => {
+            // Start the rotation
+            this.showSchedule();
+
+            // Do this on a delay, otherwise it sometimes freaks out and makes #content have zero width.
+        }, 1500);
     },
     methods: {
         totalChanged (newVal) {
@@ -74,7 +74,7 @@ export default {
                     totalAmountEl.textContent = text;
 
                     if (totalAmountEl.textContent.length !== strLen) {
-                        //this.fitContent();
+                        this.fitContent();
                         strLen = totalAmountEl.textContent.length;
                     }
                 }.bind(this)
@@ -90,6 +90,97 @@ export default {
             } else {
                 TweenLite.set(this.$refs.content, {scaleX: 1});
             }
+        },
+
+        enter() {
+            this.tl.to(this.$refs.label, 0.8, {
+                y: '0%',
+                ease: Back.easeInOut.config(1.7)
+            });
+
+            this.tl.to(this.$refs.body, 0.66, {
+                scaleX: '1',
+                ease: Power3.easeInOut
+            });
+
+            this.tl.to(this.$refs.content, 0.66, {
+                y: '0%',
+                ease: Power3.easeOut
+            }, '-=0.18');
+        },
+
+        exit() {
+            this.tl.call(() => {
+                this.tl.pause();
+                let duration = Math.max(this.$refs.body.clientWidth / 500, 0.9);
+                duration = Math.min(duration, 1.8);
+                TweenLite.to(this.$refs.label, duration, {
+                    x: this.$refs.body.clientWidth + 1,
+                    ease: Power3.easeInOut,
+                    onComplete: function () {
+                        this.tl.resume();
+                    }.bind(this)
+                });
+            }, null, null, '+=0.01');
+
+            this.tl.set(this.$refs.body, {scaleX: 0});
+            this.tl.set(this.$refs.content, {y: '100%'});
+
+            this.tl.to(this.$refs.label, 0.4, {
+                y: '100%',
+                ease: Power3.easeIn
+            }, '-=0.08');
+
+            this.tl.set(this.$refs.label, {x: 0});
+        },
+
+        showSchedule() {
+            this.tl.call(() => {
+                this.$refs.content.style.width = 'auto';
+                
+                this.contentColour = '#FFD421';
+
+                this.$refs.label.innerText = 'ON NOW';
+                this.$refs.content.innerHTML = onNow.value;
+                this.fitContent();
+            });
+            this.enter();
+            this.tl.to({}, INTERVAL, {});
+            this.exit();
+
+            if (comingUp.value) {
+                this.tl.call(() => {
+                    this.$refs.label.innerText = 'UP NEXT';
+                    this.$refs.content.innerHTML = comingUp.value;
+                    this.fitContent();
+                });
+                this.enter();
+                this.tl.to({}, INTERVAL, {});
+                this.exit();
+            }
+
+            this.tl.call(this.showCTA, null, this);
+        },
+
+        showCTA() {
+            this.tl.to(this.$refs.cta, 0.66, {
+                y: '0%',
+                ease: Back.easeOut.config(0.9)
+            });
+
+            this.tl.to(this.$refs.cta, 1, {
+                y: '-100%',
+                ease: Back.easeInOut.config(0.9)
+            }, `+=${INTERVAL}`);
+
+            this.tl.to(this.$refs.cta, 0.66, {
+                y: '-200%',
+                ease: Back.easeIn.config(0.9)
+            }, `+=${INTERVAL}`);
+
+            this.tl.set(this.$refs.cta, {y: '100%'});
+
+            this.tl.call(this.showSchedule, null, this);
         }
     }
 }
@@ -136,14 +227,13 @@ export default {
     #label {
         position: relative;
         top: 3px;
-        height: 35px;
+        height: 45px;
         padding: 0 21px;
         background-color: var(--toth-ticker-content-color);
         text-transform: uppercase;
-        font-size: 34px;
+        font-size: 42px;
         font-weight: 800;
-        font-family: 'proxima-nova-condensed';
-        line-height: 38px;
+        line-height: 45px;
         transform: translateY(100%);
         z-index: 1;
     }
@@ -158,9 +248,10 @@ export default {
     }
 
     #body {
-        border-bottom: 4px solid var(--toth-ticker-content-color);
+        border-bottom-width: 4px;
+        border-bottom-style: solid;
         padding: 0 16px;
-        height: 30px;
+        height: 36px;
         display: flex;
         align-items: center;
         transform-origin: left;
@@ -169,7 +260,7 @@ export default {
 
         #content {
             transform-origin: left;
-            font-size: 24px;
+            font-size: 30px;
             font-weight: 400;
             will-change: transform;
             text-shadow: 2.828px 2.828px 0 black;
@@ -213,12 +304,12 @@ export default {
     #total-currency {
         font-size: 39px;
         position: relative;
-        bottom: 5px;
+        bottom: 0px;
     }
 
     #total-amount {
         position: relative;
-        bottom: 2px;
+        bottom: -3px;
         font-size: 48px;
         font-variant-numeric: tabular-nums;
         font-feature-settings: "tnum";
