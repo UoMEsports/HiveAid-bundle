@@ -210,46 +210,39 @@ export default {
         };
     },
     created() {
-        NodeCG.waitForReplicants(name1, name2, name3, name4, names).then(this.listen);
+        names.on('change', newVal => {
+            let newList = clone(newVal.items);
+            console.log(newList);
+            if (!Array.isArray(newList)) {
+                this.namesList = [];
+            } else {
+                
+                // sort by value
+                newList.sort(function(a, b) {
+                    return a.realName.localeCompare(b.realName);
+                });
+                this.namesList = newList;
+            }
+        });
+        name1.on('change', newVal => {
+            this.name1 = clone(newVal) || {};
+        });
+        name2.on('change', newVal => {
+            this.name2 = clone(newVal) || {};
+        });
+        name3.on('change', newVal => {
+            this.name3 = clone(newVal) || {};
+        });
+        name4.on('change', newVal => {
+            this.name4 = clone(newVal) || {};
+        });
     },
     methods: {
-        listen() {
-            console.log("hi");
-            names.on('change', newVal => {
-                console.log(newVal);
-                if (!Array.isArray(newVal)) {
-                    this.namesList = [];
-                } else {
-                    let newList = clone(newVal);
-                    
-                    // sort by value
-                    newList.sort(function(a, b) {
-                        return a.realName.localeCompare(b.realName);
-                    });
-                    this.namesList = newList;
-                }
-            });
-            name1.on('change', newVal => {
-                this.name1 = clone(newVal) || {};
-            });
-            name2.on('change', newVal => {
-                this.name2 = clone(newVal) || {};
-            });
-            name3.on('change', newVal => {
-                this.name3 = clone(newVal) || {};
-            });
-            name4.on('change', newVal => {
-                this.name4 = clone(newVal) || {};
-            });
-        },
         set() {
-            if (this.name1Select &&this.name2Select && this.name3Select && this.name4Select) {
-                name1.value = this.namesList.find(names => names.id == this.name1Select);
-                name2.value = this.namesList.find(names => names.id == this.name2Select);
-                name3.value = this.namesList.find(names => names.id == this.name3Select);
-                name4.value = this.namesList.find(names => names.id == this.name4Select);
-            }
-            return;
+            name1.value = this.namesList.find(names => names.id == this.name1Select) || {};
+            name2.value = this.namesList.find(names => names.id == this.name2Select) || {};
+            name3.value = this.namesList.find(names => names.id == this.name3Select) || {};
+            name4.value = this.namesList.find(names => names.id == this.name4Select) || {};
         }
     }
 };
