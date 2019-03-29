@@ -31,7 +31,6 @@ recordTrackerEnabled.on('change', (newVal: boolean) => {
 });
 
 if (nodecg.bundleConfig && nodecg.bundleConfig.donationSocketUrl) {
-    // tslint:disable-next-line:no-var-requires
     const socket = require('socket.io-client')(nodecg.bundleConfig.donationSocketUrl);
     let loggedXhrPollError = false;
 
@@ -87,7 +86,6 @@ if (nodecg.bundleConfig && nodecg.bundleConfig.donationSocketUrl) {
         nodecg.log.error('Donation socket error:', err);
     });
 } else {
-    // tslint:disable-next-line:prefer-template
     nodecg.log.warn(`cfg/${nodecg.bundleName}.json is missing the "donationSocketUrl" property.` +
 		'\n\tThis means that we cannot receive new incoming PayPal donations from the tracker,' +
 		'\n\tand that donation notifications will not be displayed as a result. The total also will not update.');
@@ -142,7 +140,7 @@ function manuallyUpdateTotal(silent: boolean, cb?: ListenForCb): void {
 async function updateTotal(): Promise<boolean> {
     try {
         const stats = await request({
-            uri: 'https://www.dropbox.com/s/h7qivvpn4izmbi5/total.json?dl=1',
+            uri: nodecg.bundleConfig.tracker.baseUrl + '/index/' + nodecg.bundleConfig.tracker.eventId + '?json',
             json: true
         });
 
