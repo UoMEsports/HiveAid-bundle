@@ -1,7 +1,7 @@
 <template>
-  <div class="producer">
-    <h1>Test</h1>
-  </div>
+    <div class="producer">
+        <h1>Test</h1>
+    </div>
 </template>
 
 <script>

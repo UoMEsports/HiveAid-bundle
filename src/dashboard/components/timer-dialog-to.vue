@@ -1,15 +1,15 @@
 <template>
-  <div>
-    <v-time-picker
-      v-model="picker"
-      :min="min"
-      :landscape="landscape"
-      full-width
-      format="24hr"
-      :dark="true"
-      color="blue lighten-1"
-    ></v-time-picker>
-  </div>
+    <div>
+        <v-time-picker
+            v-model="picker"
+            :min="min"
+            :landscape="landscape"
+            full-width
+            format="24hr"
+            :dark="true"
+            color="blue lighten-1"
+        ></v-time-picker>
+    </div>
 </template>
 
 <script>

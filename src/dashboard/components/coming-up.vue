@@ -1,18 +1,18 @@
 <template>
-  <div>
-    <h2><span class="coming-up-label">Coming Up: </span>{{ comingUpText }}</h2>
-    <v-text-field
-      v-model="newText"
-      label="Coming Up Text"
-      dark
-    ></v-text-field>
-    <v-btn
-      color="green"
-      @click="setText"
-    >
-      Update Coming Up Text
-    </v-btn>
-  </div>
+    <div>
+        <h2><span class="coming-up-label">Coming Up: </span>{{ comingUpText }}</h2>
+        <v-text-field
+            v-model="newText"
+            label="Coming Up Text"
+            dark
+        ></v-text-field>
+        <v-btn
+            color="green"
+            @click="setText"
+        >
+            Update Coming Up Text
+        </v-btn>
+    </div>
 </template>
 
 <script>
@@ -28,7 +28,7 @@ export default {
     computed: {
         startStopContent() {
             return this.running ? 'STOP' : 'START';
-	  },
+        },
     },
     created() {
         NodeCG.waitForReplicants(comingUp).then(this.listen);
@@ -38,11 +38,11 @@ export default {
             comingUp.on('change', newVal => {
                 this.comingUpText =  newVal;
             });
-	  },
-  	setText() {
+        },
+        setText() {
             comingUp.value = this.newText;
             this.newText = "";
-  	}
+        }
     }
 };
 </script>

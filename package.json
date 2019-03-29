@@ -100,6 +100,14 @@
         "workspace": "1: Main"
       },
       {
+        "name": "totals",
+        "title": "Totals",
+        "width": 3,
+        "file": "totals-ctrl.html",
+        "headerColor": "#525F78",
+        "workspace": "1: Main"
+      },
+      {
         "name": "timer-dialog-to",
         "title": "Set Timer",
         "width": 4,

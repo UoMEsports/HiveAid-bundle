@@ -1,47 +1,47 @@
 <template>
-  <div>
-    <h1 class="time">
-      {{ time }}
-    </h1>
-    <h2>{{ nextTime }}</h2>
-    <h1 class="text">
-      {{ text }}
-    </h1>
-    <v-btn
-      :color="startStopColour"
-      @click="toggleTimer"
-    >
-      {{ startStopContent }}
-    </v-btn>
-    <v-btn
-      :color="showHideColour"
-      @click="toggleHidden"
-    >
-      {{ showHideContent }}
-    </v-btn>
-    <v-btn
-      color="orange"
-      nodecg-dialog="timer-dialog-to"
-    >
-      Run to
-    </v-btn>
-    <v-btn
-      color="orange"
-      nodecg-dialog="timer-dialog-for"
-    >
-      Run for
-    </v-btn>
-    <v-text-field
-      v-model="newText"
-      dark
-    ></v-text-field>
-    <v-btn
-      color="green"
-      @click="setText"
-    >
-      Update Text
-    </v-btn>
-  </div>
+    <div>
+        <h1 class="time">
+            {{ time }}
+        </h1>
+        <h2>{{ nextTime }}</h2>
+        <h1 class="text">
+            {{ text }}
+        </h1>
+        <v-btn
+            :color="startStopColour"
+            @click="toggleTimer"
+        >
+            {{ startStopContent }}
+        </v-btn>
+        <v-btn
+            :color="showHideColour"
+            @click="toggleHidden"
+        >
+            {{ showHideContent }}
+        </v-btn>
+        <v-btn
+            color="orange"
+            nodecg-dialog="timer-dialog-to"
+        >
+            Run to
+        </v-btn>
+        <v-btn
+            color="orange"
+            nodecg-dialog="timer-dialog-for"
+        >
+            Run for
+        </v-btn>
+        <v-text-field
+            v-model="newText"
+            dark
+        ></v-text-field>
+        <v-btn
+            color="green"
+            @click="setText"
+        >
+            Update Text
+        </v-btn>
+    </div>
 </template>
 
 <script>
@@ -81,7 +81,7 @@ export default {
     methods: {
         toggleTimer() {
             if (running.value) {
-                nodecg.sendMessage('stopCountdown', countdownNext.value);
+                nodecg.sendMessage('stopCountdown');
             } else {
                 nodecg.sendMessage('startCountdown', countdownNext.value);
             }

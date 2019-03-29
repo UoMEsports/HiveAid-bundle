@@ -1,70 +1,70 @@
 <template>
-  <v-container
-    fluid
-    grid-list-lg
-  >
-    <v-layout
-      row
-      wrap
+    <v-container
+        fluid
+        grid-list-lg
     >
-      <v-flex xs12>
-        <v-form
-          ref="form"
-          v-model="valid"
+        <v-layout
+            row
+            wrap
         >
-          <v-text-field
-            v-model="message"
-            label="Message"
-            :rules="[required]"
-            dark
-          ></v-text-field>
+            <v-flex xs12>
+                <v-form
+                    ref="form"
+                    v-model="valid"
+                >
+                    <v-text-field
+                        v-model="message"
+                        label="Message"
+                        :rules="[required]"
+                        dark
+                    ></v-text-field>
           
-          <v-btn
-            color="green"
-            @click="add"
-          >
-            Add
-          </v-btn>
-        </v-form>
-      </v-flex>
+                    <v-btn
+                        color="green"
+                        @click="add"
+                    >
+                        Add
+                    </v-btn>
+                </v-form>
+            </v-flex>
 
-      <v-list
-        v-show="Object.keys(omnibarTicks).length > 0"
-        two-line
-      >
-        <template v-for="(item, index) in omnibarTicks">
-          <v-flex
-            :key="index"
-            xs12
-          >
-            <v-card
-              class="current"
-              dark
+            <v-list
+                v-show="Object.keys(omnibarTicks).length > 0"
+                two-line
             >
-              <v-card-title primary-title>
-                <div>
-                  <h3 class="headline mb-0">
-                    {{ item.id }}
-                  </h3>
-                  <h3>{{ item.message }}</h3>
-                </div>
-              </v-card-title>
+                <template v-for="(item, index) in omnibarTicks">
+                    <v-flex
+                        :key="index"
+                        xs12
+                    >
+                        <v-card
+                            class="current"
+                            dark
+                        >
+                            <v-card-title primary-title>
+                                <div>
+                                    <h3 class="headline mb-0">
+                                        {{ item.id }}
+                                    </h3>
+                                    <h3>{{ item.message }}</h3>
+                                </div>
+                            </v-card-title>
 
-              <v-btn
-                fab
-                dark
-                small
-                color="red"
-                @click="del(item.id)"
-              >
-                <v-icon>delete</v-icon>
-              </v-btn>
-            </v-card>
-          </v-flex>
-        </template>
-      </v-list>
-    </v-layout>
-  </v-container>
+                            <v-btn
+                                fab
+                                dark
+                                small
+                                color="red"
+                                @click="del(item.id)"
+                            >
+                                <v-icon>delete</v-icon>
+                            </v-btn>
+                        </v-card>
+                    </v-flex>
+                </template>
+            </v-list>
+        </v-layout>
+    </v-container>
 </template>
 
 <script>
