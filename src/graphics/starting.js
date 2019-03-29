@@ -1,6 +1,6 @@
 import Vue from 'vue';
-import Countdown from './components/countdown.vue'
+import Starting from './components/starting.vue'
 
 new Vue({
-    render: h => h(Countdown)
+    render: h => h(Starting)
 }).$mount('#app');
