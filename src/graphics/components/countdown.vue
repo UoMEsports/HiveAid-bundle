@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <h1>{{ countdown }}</h1>
-  </div>
+    <div>
+        <h1>{{ countdown }}</h1>
+    </div>
 </template>
 
 <script>
@@ -30,7 +30,8 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../../shared/style/main.scss';
-h1{
+
+h1 {
   color: $primary;
   font-size: 500px
 }
