@@ -1,6 +1,8 @@
 <template>
     <div class="omnibar">
-        <img id="logo" src="../img/omnibar-logo.png">
+        <div class="logo-wrapper">
+            <img id="logo" src="../img/omnibar-logo.png">
+        </div>
         <div id="main">
             <div id="label" ref="label" :style="'background-color: ' + contentColour"></div>
             <div id="body" ref="body" :style="'border-bottom-color: ' + contentColour">
@@ -206,13 +208,21 @@ export default {
     align-items: flex-end;
 }
 
-#logo {
+.logo-wrapper {
     position: relative;
     padding-left: 9px;
     padding-right: 15px;
-    bottom: 5px;
-    width: 163px;
     z-index: 2;
+    height: 60px;
+    background-color: #151515;
+
+    border-top: 3px solid $secondary;
+    border-right: 3px solid $secondary;
+
+    #logo {
+        margin-top: 10px;
+        width: 163px;
+    }
 }
 
 #main {
