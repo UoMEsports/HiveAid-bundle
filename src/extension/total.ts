@@ -171,7 +171,7 @@ async function updateTotal(): Promise<boolean> {
  * from a Postback URL on the tracker.
  * @returns A formatted donation.
  */
-function formatDonation(donation: Donation): {amount: string; rawAmount: number; newTotal: string; rawNewTotal: number} {
+function formatDonation(donation: Donation): {name: string; comment: string; amount: string; rawAmount: number; newTotal: string; rawNewTotal: number} {
     const rawAmount = donation.rawAmount, newTotal = donation.newTotal;
     const parsedRawAmount = typeof rawAmount === 'string' ? parseFloat(rawAmount) : rawAmount;
     const parsedRawNewTotal = typeof newTotal === 'string' ? parseFloat(newTotal) : newTotal;
@@ -185,6 +185,8 @@ function formatDonation(donation: Donation): {amount: string; rawAmount: number;
     }
 
     return {
+        name: donation.name,
+	    comment: donation.comment,
         amount,
         rawAmount: parsedRawAmount,
         newTotal: formatPounds(parsedRawNewTotal, {pence: false}),
