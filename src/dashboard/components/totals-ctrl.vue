@@ -1,6 +1,8 @@
 <template>
     <div class="totals-ctrl">
         <div id="toggles">
+            <h5>Current Total:</h5>
+            <h1>{{ total }}</h1>
             <div class="toggle">
                 <nodecg-toggle
                     replicantName="autoUpdateTotal"
@@ -33,7 +35,7 @@
                 <v-card-text>
                     <v-text-field
                         id="editTotalInput"
-                        v-model="total"
+                        v-model="newTotal"
                         label="Donation Total"
                         type="number"
             
@@ -68,10 +70,18 @@
 </template>
 
 <script>
+const total = nodecg.Replicant('total');
+
 export default {
+    created() {
+        total.on('change', newVal => {
+            this.total = newVal.formatted;
+        });
+    },
     data() {
         return {
-            total: 0,
+            total: null,
+            newTotal: 0,
             dialog: false,
             toggleData: {
                 text: {unchecked: 'autoupdate off', checked: 'autoupdate on'},
@@ -81,10 +91,10 @@ export default {
     },
     methods: {
         increment () {
-            this.total = parseInt(this.total,10) + 1
+            this.newTotal = parseInt(this.newTotal,10) + 1
         },
         decrement () {
-            this.total = parseInt(this.total,10) - 1
+            this.newTotal = parseInt(this.newTotal,10) - 1
         },
         handleEditDialogConfirmed () {
             this.dialog = false;
