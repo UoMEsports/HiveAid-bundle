@@ -6,8 +6,11 @@ module.exports = {
 	rules: {
 		"vue/html-self-closing": ["error", {
 			"html": {
-				"component": "never"
+				"component": "never",
+				"normal": "never"
 			}
-		}]
+		}],
+		"vue/attribute-hyphenation": ["off"],
+		"vue/html-indent": ["error", 4]
 	}
 }
