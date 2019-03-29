@@ -11,6 +11,9 @@ module.exports = {
 			}
 		}],
 		"vue/attribute-hyphenation": ["off"],
-		"vue/html-indent": ["error", 4]
+		"vue/html-indent": ["error", 4],
+		"vue/max-attributes-per-line": ["warn", {
+			"singleline": 3
+		}]
 	}
 }
