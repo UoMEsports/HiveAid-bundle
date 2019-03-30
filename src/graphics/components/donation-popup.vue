@@ -2,6 +2,7 @@
     <div ref="popup" class="popup">
         <h1 class="amount" ref="amount"></h1>
         <h1 class="name" ref="name"></h1>
+        <video autoplay loop src="../img/clipped.mp4" class="video">
     </div>
 </template>
 
@@ -29,7 +30,7 @@ export default {
         newDonation(data) {
             this.tl.call(() => {
                 console.log(data);
-                this.$refs.amount.textContent = data.amount;
+                this.$refs.amount.textContent = data.formattedAmount;
                 this.$refs.name.textContent = data.name;
             }, null, null, '+= 0.5');
 
@@ -55,9 +56,20 @@ export default {
     height: 260px;
     background-color: rgba(0,0,0,0.7);
 
+    position: relative;
+
     padding-left: 20px;
 
-    color: white;
+    color: $background;
+
+    .video {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -50;
+    }
 
     h1 {
         width: 100%;
