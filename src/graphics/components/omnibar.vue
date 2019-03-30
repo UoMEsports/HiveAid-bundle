@@ -59,10 +59,9 @@ export default {
         totalChanged (newVal) {
             const TIME_PER_POUND = 0.03;
             const totalAmountEl = this.$refs.totalAmount;
-            const delta = newVal.raw - totalAmountEl.getAttribute("rawvalue");
+            const delta = newVal.raw - this.total;
             const duration = Math.min(delta * TIME_PER_POUND, 5);
             let strLen = totalAmountEl.textContent.length;
-            console.log(strLen);
             TweenLite.to(this, duration, {
                 total: newVal.raw,
                 ease: Power2.easeOut,
@@ -70,8 +69,6 @@ export default {
                     let text = this.total.toLocaleString('en-GB', {
                         maximumFractionDigits: 0
                     });
-
-                    console.log(text);
 
                     totalAmountEl.textContent = text;
 
@@ -261,7 +258,7 @@ export default {
         border-bottom-width: 4px;
         border-bottom-style: solid;
         padding: 0 16px;
-        height: 36px;
+        height: 40px;
         display: flex;
         align-items: center;
         transform-origin: left;
