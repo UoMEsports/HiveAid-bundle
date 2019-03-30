@@ -16,12 +16,12 @@
             v-model="dialog"
         >
             <template v-slot:activator="{ on }">
-                <v-btn
+                <!--<v-btn
                     dark
                     v-on="on"
                 >
                     Edit
-                </v-btn>
+                </v-btn-->
             </template>
 
             <v-card>
@@ -66,6 +66,13 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
+
+        <v-btn
+            color="green"
+            @click="sendDonation"
+        >
+            Send Donation
+        </v-btn>
     </div>
 </template>
 
@@ -98,7 +105,9 @@ export default {
         },
         handleEditDialogConfirmed () {
             this.dialog = false;
-
+        },
+        sendDonation() {
+            nodecg.sendMessage('donation', {name: 'Dangsdgds Shields', formattedAmount: '£10'})
         }
     }
 }
