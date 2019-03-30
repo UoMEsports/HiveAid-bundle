@@ -1,7 +1,9 @@
 <template>
     <div ref="popup" class="popup">
         <h1 class="amount" ref="amount"></h1>
-        <h1 class="name" ref="name"></h1>
+        <fit-text ref="name" :unit="'px'" :targetWidth="380" :max="50" class="name">
+            {{ name }}
+        </fit-text>
         <video autoplay loop src="../img/clipped.mp4" class="video">
     </div>
 </template>
@@ -15,6 +17,7 @@ export default {
     data() {
         return {
             tl: new TimelineLite({autoRemoveChildren: true}),
+            name: null
         };
     },
   
@@ -30,8 +33,8 @@ export default {
         newDonation(data) {
             this.tl.call(() => {
                 console.log(data);
-                this.$refs.amount.textContent = data.formattedAmount;
-                this.$refs.name.textContent = data.name;
+                this.$refs.amount.textContent = data.amount;
+                this.name = data.name;
             }, null, null, '+= 0.5');
 
             this.tl.to(this.$refs.popup, 1.5, {
@@ -83,7 +86,7 @@ export default {
     }
 
     .name {
-        font-size: 50px;
+        margin-left: 10px;
     }
 }
 

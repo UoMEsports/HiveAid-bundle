@@ -107,7 +107,7 @@ export default {
             this.dialog = false;
         },
         sendDonation() {
-            nodecg.sendMessage('donation', {name: 'Dangsdgds Shields', formattedAmount: '£10'})
+            nodecg.sendMessage('donation', {name: 'Dan Shields.', amount: '£10'})
         }
     }
 }
