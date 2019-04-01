@@ -1,10 +1,22 @@
 <template>
     <div ref="popup" class="popup">
-        <h1 class="amount" ref="amount"></h1>
-        <fit-text ref="name" :unit="'px'" :targetWidth="380" :max="50" class="name">
+        <h1 ref="amount" class="amount"></h1>
+        <fit-text
+            ref="name"
+            :unit="'px'"
+            :targetWidth="380"
+            :max="50"
+            class="name"
+        >
             {{ name }}
         </fit-text>
-        <video autoplay loop src="../img/clipped.mp4" class="video">
+        <video
+            autoplay
+            loop
+            src="../img/clipped.mp4"
+            class="video"
+        >
+        </video>
     </div>
 </template>
 

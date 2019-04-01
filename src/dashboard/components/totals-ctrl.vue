@@ -80,11 +80,6 @@
 const total = nodecg.Replicant('total');
 
 export default {
-    created() {
-        total.on('change', newVal => {
-            this.total = newVal.formatted;
-        });
-    },
     data() {
         return {
             total: null,
@@ -95,6 +90,11 @@ export default {
                 color: {unchecked: 'red', checked: 'green'}
             }
         }
+    },
+    created() {
+        total.on('change', newVal => {
+            this.total = newVal.formatted;
+        });
     },
     methods: {
         increment () {
