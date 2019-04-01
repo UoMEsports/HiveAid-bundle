@@ -94,30 +94,6 @@
         "workspace": "1: Main"
       },
       {
-        "name": "names",
-        "title": "Names",
-        "width": 3,
-        "file": "names.html",
-        "headerColor": "#525F78",
-        "workspace": "1: Main"
-      },
-      {
-        "name": "nameplates",
-        "title": "Nameplates",
-        "width": 3,
-        "file": "nameplates.html",
-        "headerColor": "#525F78",
-        "workspace": "1: Main"
-      },
-      {
-        "name": "omnibar-ticker",
-        "title": "Omnibar Ticker",
-        "width": 3,
-        "file": "omnibar-ticker.html",
-        "headerColor": "#525F78",
-        "workspace": "1: Main"
-      },
-      {
         "name": "totals",
         "title": "Totals",
         "width": 3,

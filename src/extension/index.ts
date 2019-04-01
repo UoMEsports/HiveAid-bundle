@@ -5,7 +5,5 @@ export = (nodecg: NodeCG) => {
     nodecgApiContext.set(nodecg);
 
     require('./countdown');
-    require('./names');
     require('./total');
-    require('./omnibar-ticker')
 };
