@@ -2,7 +2,7 @@
 
 HiveAid-bundle is a [NodeCG](http://github.com/nodecg/nodecg) bundle. It was developed and run in version 1.3.1. It may work with future versions, but there's no guarantee that it will work on anything else.
 
-Big thanks to the GDQ and TipOfTheHats teams, a lot of the extensions are taken from GDQ, and the omnibar is a straight up reskin of the TotH one.
+Big thanks to the GDQ and TipOfTheHats teams, the totals extension was taken from GDQ, and the omnibar is a straight up reskin of the TotH one.
 
 ## Features
 - GDQ Donation tracker integration (total & popups)
