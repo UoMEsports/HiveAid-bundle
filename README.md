@@ -1,3 +1,5 @@
+[![hiveaid logo](https://raw.githubusercontent.com/UoMEsports/hiveaid-static/master/src/assets/img/banner.png)](https://hiveaid.uomesports.co.uk)
+
 # HiveAid 2019 Graphics
 
 HiveAid-bundle is a [NodeCG](http://github.com/nodecg/nodecg) bundle. It was developed and run in version 1.3.1. It may work with future versions, but there's no guarantee that it will work on anything else.
