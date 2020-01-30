@@ -99,6 +99,8 @@ export default {
 
     .name {
         margin-left: 10px;
+        line-height: 150px;
+        vertical-align: middle;
     }
 }
 
