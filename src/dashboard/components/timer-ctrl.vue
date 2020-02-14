@@ -1,12 +1,8 @@
 <template>
     <div>
-        <h1 class="time">
-            {{ time }}
-        </h1>
-        <h2>{{ nextTime }}</h2>
-        <h1 class="text">
-            {{ text }}
-        </h1>
+        <h1 class="time">{{ time }}</h1>
+        <h2>Start at: {{ nextTime }}</h2>
+        <h2>Text: {{ text }}</h2>
         <v-btn
             :color="startStopColour"
             @click="toggleTimer"
@@ -115,10 +111,6 @@ export default {
 
 <style lang="scss" scoped>
 .time {
-  font-size: 70px;
-}
-.text {
-  width: 100%;
-  text-align: center;
+  font-size: 50px;
 }
 </style>

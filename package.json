@@ -96,8 +96,16 @@
       {
         "name": "totals",
         "title": "Totals",
-        "width": 3,
+        "width": 2,
         "file": "totals-ctrl.html",
+        "headerColor": "#525F78",
+        "workspace": "1: Main"
+      },
+      {
+        "name": "nameplates",
+        "title": "Nameplates",
+        "width": 2,
+        "file": "nameplates.html",
         "headerColor": "#525F78",
         "workspace": "1: Main"
       },

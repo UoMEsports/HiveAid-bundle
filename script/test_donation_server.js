@@ -6,18 +6,22 @@ let totalInPence = 0;
 generateAndEmitDonation();
 
 function generateAndEmitDonation() {
-	const rawAmountInPence = randomInt(100, 60000);
+	const rawAmountInPence = randomInt(100, 3000);
 	totalInPence += rawAmountInPence;
-
+	const names = ["Vanquish_big_boi_epic", "Fill_30", "Jon_Chia", "albiorix", "tme5", "theNUEL"];
+	
 	const data = {
+		name: String(names[Math.floor(Math.random()*names.length)]),
+		comment: String("hope you like my donation of " + rawAmountInPence + " pence"),
 		rawAmount: String(rawAmountInPence / 100),
 		newTotal: String(totalInPence / 100)
+
 	};
 
 	io.emit('donation', data);
 	console.log('Emitted donation:', data);
 
-	setTimeout(generateAndEmitDonation, randomInt(100, 3000));
+	setTimeout(generateAndEmitDonation, 10000);
 }
 
 function randomInt(min, max) {

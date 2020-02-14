@@ -14,6 +14,7 @@
 
 <script>
 const countdownNext = nodecg.Replicant('countdownNext');
+const running = nodecg.Replicant('countdownRunning');
 export default {
     data () {
         return {
@@ -37,6 +38,7 @@ export default {
             countdownNext.value = this.setEnd(d.getTime() / 1000);
         });
     },
+
     methods: {
         getMinTime: () => {
             let d = new Date;
@@ -46,7 +48,7 @@ export default {
         setEnd: (ts) => {
             const timeDiff = Math.max(ts - ((new Date).getTime() / 1000), 0);
             return timeDiff;
-        }
+        }   
     }
 };
 </script>

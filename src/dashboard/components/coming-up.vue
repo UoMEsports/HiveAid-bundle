@@ -17,6 +17,7 @@
         <br>
         <hr>
         <br>
+        <br>
 
         <h2><span class="label">Coming Up: </span>{{ comingUpText }}</h2>
         <v-text-field

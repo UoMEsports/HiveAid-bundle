@@ -1,6 +1,5 @@
 <template>
     <div ref="popup" class="popup">
-        <h1 ref="amount" class="amount"></h1>
         <fit-text
             ref="name"
             :unit="'px'"
@@ -10,10 +9,11 @@
         >
             {{ name }}
         </fit-text>
+        <h1 ref="amount" class="amount"></h1>
         <video
             autoplay
             loop
-            src="../img/clipped.mp4"
+            src="../img/clippedsmol.mp4"
             class="video"
         >
         </video>
@@ -38,7 +38,7 @@ export default {
     },
 
     mounted() {
-        this.tl.set(this.$refs.popup, {x: '-420'});
+        this.tl.set(this.$refs.popup, {x: '400'});
     },
 
     methods: {
@@ -50,12 +50,12 @@ export default {
             }, null, null, '+= 0.5');
 
             this.tl.to(this.$refs.popup, 1.5, {
-                x: '-20',
+                x: '0',
                 ease: Back.easeOut.config(0.9)
             });
 
             this.tl.to(this.$refs.popup, 1.5, {
-                x: '-420',
+                x: '400',
                 ease: Back.easeIn.config(0.9)
             }, '+=5');
         }
@@ -68,13 +68,13 @@ export default {
 
 .popup {
     width: 400px;
-    height: 260px;
-    background-color: rgba(0,0,0,0.7);
+    height: 130px;
+    background-color: rgba(0,0,0,0);
 
-    position: relative;
-
-    padding-left: 20px;
-
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 130px;
     color: $background;
 
     .video {
@@ -89,11 +89,12 @@ export default {
     h1 {
         width: 100%;
         text-align: center;
+        margin-bottom: 0px;
     }
 
     .amount {
-        padding-top: 16px;
         font-size: 80px;
+        margin-top: 0px;
         margin-bottom: 0px;
     }
 

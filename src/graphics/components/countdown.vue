@@ -1,24 +1,21 @@
 <template>
     <div>
         <h1>{{ countdown }}</h1>
-        <h2>{{ upNext }}</h2>
     </div>
 </template>
 
 <script>
 const countdownRep = nodecg.Replicant('countdown');
-const comingUp = nodecg.Replicant('comingUp');
 
 export default {
     data() {
         return {
-            countdown: "0:00",
-            upNext: ''
+            countdown: "0:00"
         };
     },
   
     created() {
-        NodeCG.waitForReplicants(countdownRep, comingUp).then(this.listen);
+        NodeCG.waitForReplicants(countdownRep).then(this.listen);
     },
 
     methods: {
@@ -27,8 +24,9 @@ export default {
                 var reformattedtime = newVal.formatted.slice(0, newVal.formatted.length-2);
                 this.countdown = reformattedtime;
             });
-            comingUp.on('change', newVal => {
-                this.upNext = newVal;
+            countdownText.on('change', newVal => {
+                var reformattedtime = newVal.formatted.slice(0, newVal.formatted.length-2);
+                this.countdown = reformattedtime;
             });
         }
     }

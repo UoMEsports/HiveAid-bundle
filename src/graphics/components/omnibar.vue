@@ -10,7 +10,7 @@
             </div>
             <div id="cta" ref="cta">
                 <div id="cta-1">
-                    <span style="color: #FFD421;">HiveAid 2019</span> supports <span style="font-weight: 800;">SpecialEffect</span>
+                    <span style="color: #FFD421;">HiveAid 2.0</span> supports <span style="font-weight: 800;">SpecialEffect</span>
                 </div>
 
                 <div id="cta-2">
@@ -20,7 +20,7 @@
         </div>
         <div id="total">
             <div id="total-currency">
-                £
+                <p></p>
             </div>
             <div id="total-amount" ref="totalAmount"></div>
         </div>
@@ -70,7 +70,7 @@ export default {
                         maximumFractionDigits: 0
                     });
 
-                    totalAmountEl.textContent = text;
+                    totalAmountEl.textContent = "£" + text;
 
                     if (totalAmountEl.textContent.length !== strLen) {
                         this.fitContent();
@@ -236,6 +236,7 @@ export default {
         top: 3px;
         height: 45px;
         padding: 0 21px;
+        color: #151515;
         background-color: var(--toth-ticker-content-color);
         text-transform: uppercase;
         font-size: 42px;
@@ -296,7 +297,6 @@ export default {
         }
     }
 }
-
 #total {
     display: flex;
     align-items: baseline;
@@ -306,21 +306,20 @@ export default {
     font-weight: 700;
     margin-left: 24px;
     height: 54px;
+    width: 200px;
     color: black;
-
-    #total-currency {
-        font-size: 39px;
-        position: relative;
-        bottom: 0px;
-    }
-
+    
     #total-amount {
-        position: relative;
-        bottom: -3px;
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+        margin-right: 20px;
         font-size: 48px;
         font-variant-numeric: tabular-nums;
         font-feature-settings: "tnum";
+        text-align: right;
     }
 }
+
 
 </style>

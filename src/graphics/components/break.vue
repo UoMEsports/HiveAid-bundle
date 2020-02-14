@@ -1,6 +1,7 @@
 <template>
     <div class="starting">
         <h1>Up Next:</h1>
+        <h2>{{ upNext }}</h2>
         <Countdown id="countdown"></Countdown>
     </div>
 </template>
@@ -8,10 +9,32 @@
 <script>
 import Countdown from './countdown';
 
+const comingUp = nodecg.Replicant('comingUp');
+
 export default {
     components: {
         Countdown
+    },
+
+    data() {
+        return {
+            upNext: ''
+        };
+    },
+    
+    created() {
+        NodeCG.waitForReplicants(comingUp).then(this.listen);
+    },
+
+    methods: {
+        listen() {
+            comingUp.on('change', newVal => {
+                this.upNext = newVal;
+            });
+        }
     }
+
+    
 }
 </script>
 
@@ -25,6 +48,13 @@ h1 {
     text-align: center;
     top: 675px;
     text-shadow: 2px 2px 10px black;
+}
+
+h2 {
+    color: white;
+    text-align: center;
+    font-size: 100px;
+    text-shadow: 3px 3px 15px black;
 }
 
 #countdown {
