@@ -10,18 +10,18 @@
             </div>
             <div id="cta" ref="cta">
                 <div id="cta-1">
-                    <span style="color: #FFD421;">HiveAid 2.0</span> supports <span style="font-weight: 800;">SpecialEffect</span>
+                    <span style="color: #FFD421;">HiveAid2020</span> supports <span style="font-weight: 800;">SpecialEffect</span>
                 </div>
 
                 <div id="cta-2">
-                    Donate now at <span style="color: #FFD421; font-weight: 800;">honeypot.uomesports.co.uk</span>
+                    Donate now at <span style="color: #FFD421; font-weight: 800;">hiveaid.uomesports.co.uk</span>
+                </div>
+                <div id="cta-3">
+                    All doners have a chance to win a <span style="color: #E7243D;">HYPERX</span> Cloud Alpha headset
                 </div>
             </div>
         </div>
         <div id="total">
-            <div id="total-currency">
-                <p></p>
-            </div>
             <div id="total-amount" ref="totalAmount"></div>
         </div>
     </div>
@@ -172,11 +172,16 @@ export default {
                 ease: Back.easeInOut.config(0.9)
             }, `+=${INTERVAL}`);
 
-            this.tl.to(this.$refs.cta, 0.66, {
+            this.tl.to(this.$refs.cta, 1, {
                 y: '-200%',
-                ease: Back.easeIn.config(0.9)
+                ease: Back.easeInOut.config(0.9)
             }, `+=${INTERVAL}`);
 
+            this.tl.to(this.$refs.cta, 0.66, {
+                y: '-300%',
+                ease: Back.easeIn.config(0.9)
+            }, `+=${INTERVAL}`);
+        
             this.tl.set(this.$refs.cta, {y: '100%'});
 
             this.tl.call(this.showSchedule, null, this);
@@ -291,7 +296,8 @@ export default {
         top: -2px;
 
         #cta-1,
-        #cta-2 {
+        #cta-2,
+        #cta-3 {
             height: 100%;
             line-height: 50px;
         }
