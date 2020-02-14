@@ -1,15 +1,25 @@
 <template>
     <div ref="popup" class="popup">
-        <fit-text
-            ref="name"
-            :unit="'px'"
-            :targetWidth="380"
-            :max="50"
-            class="name"
-        >
-            {{ name }}
-        </fit-text>
-        <h1 ref="amount" class="amount"></h1>
+        <h1 class="name">
+            <fit-text
+                ref="name"
+                :unit="'px'"
+                :targetWidth="380"
+                :max="45" 
+            >
+                {{ name }}
+            </fit-text>
+        </h1>
+        <h1 class="amount">
+            <fit-text
+                ref="amount"
+                :unit="'px'"
+                :targetWidth="380"
+                :max="54" 
+            >
+                {{ amount }}
+            </fit-text>
+        </h1>
         <video
             autoplay
             loop
@@ -29,7 +39,8 @@ export default {
     data() {
         return {
             tl: new TimelineLite({autoRemoveChildren: true}),
-            name: null
+            name: null,
+            amount: null
         };
     },
   
@@ -45,7 +56,7 @@ export default {
         newDonation(data) {
             this.tl.call(() => {
                 console.log(data);
-                this.$refs.amount.textContent = data.amount;
+                this.amount = data.amount;
                 this.name = data.name;
             }, null, null, '+= 0.5');
 
@@ -89,19 +100,16 @@ export default {
     h1 {
         width: 100%;
         text-align: center;
-        margin-bottom: 0px;
+        margin-bottom: 10px;
     }
 
     .amount {
-        font-size: 80px;
         margin-top: 0px;
         margin-bottom: 0px;
     }
 
     .name {
-        margin-left: 10px;
-        line-height: 150px;
-        vertical-align: middle;
+        margin-top: 18px;
     }
 }
 
