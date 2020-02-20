@@ -58,6 +58,7 @@ export default {
                 console.log(data);
                 this.amount = data.amount;
                 this.name = data.name;
+                nodecg.playSound('donation');
             }, null, null, '+= 0.5');
 
             this.tl.to(this.$refs.popup, 1.5, {

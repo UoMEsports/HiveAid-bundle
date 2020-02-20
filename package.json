@@ -143,6 +143,12 @@
         ],
         "file": "timer-dialog-for.html"
       }
+    ],
+    "soundCues": [
+      {
+        "name": "donation",
+        "defaultFile": "sound/donation.ogg"
+      }
     ]
   }
 }
