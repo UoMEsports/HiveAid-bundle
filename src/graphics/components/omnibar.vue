@@ -17,7 +17,7 @@
                     Donate now at <span style="color: #FFD421; font-weight: 800;">hiveaid.uomesports.co.uk</span>
                 </div>
                 <div id="cta-3">
-                    All doners have a chance to win a <span style="color: #E7243D;">HYPERX</span> Cloud Alpha headset
+                    All donors have a chance to win a <span style="color: #E7243D;">HYPERX</span> Cloud Alpha headset
                 </div>
             </div>
         </div>
