@@ -43,18 +43,25 @@ export default {
 
 h1 {
     color: white;
+    text-align: center;
+    text-shadow: 2px 2px 10px black;
+
     position: fixed;
     width: 1920px;
-    text-align: center;
     top: 675px;
-    text-shadow: 2px 2px 10px black;
+    
 }
 
 h2 {
     color: white;
     text-align: center;
-    font-size: 100px;
     text-shadow: 3px 3px 15px black;
+    font-size: 100px;
+
+    position: fixed;
+    width: 1920px;
+    top: 690px;
+
 }
 
 #countdown {
