@@ -45,7 +45,7 @@
     "dart-sass": "^1.17.1",
     "eslint": "^5.15.1",
     "eslint-plugin-vue": "^5.2.2",
-    "gsap": "^2.1.0",
+    "gsap": "^3.6.0",
     "nodecg-vue": "^0.5.2",
     "parcel-bundler": "^1.11.0",
     "sass": "^1.17.1",
