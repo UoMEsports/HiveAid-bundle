@@ -24,7 +24,7 @@
   "dependencies": {
     "clone": "^2.1.2",
     "cloneable-ts": "^1.0.15",
-    "luxon": "^1.11.3",
+    "luxon": "^1.28.1",
     "milliseconds": "^1.0.3",
     "nanotimer": "^0.3.15",
     "parse-ms": "^2.0.0",
